@@ -7,66 +7,63 @@ description: Agile engineering best practices - estimation, retrospectives, cont
 
 This skill provides practical guidance for implementing agile engineering practices effectively.
 
-## Story Point Estimation
+## Turn-Based Estimation (AI Teams)
 
-### Why Story Points?
-- Relative estimation, not absolute time
-- Accounts for complexity, uncertainty, effort
-- Team-specific (your 3 ≠ my 3)
-- Fibonacci sequence: 1, 2, 3, 5, 8, 13, 21
+### Why Turns?
+- AI work happens in conversation turns (50-turn session limit)
+- Each turn has measurable output
+- Team self-assesses what they can commit in turns
+- PO cannot override team capacity estimate
 
-### Planning Poker
-1. Product Owner reads item
-2. Team discusses briefly
-3. Everyone estimates simultaneously
-4. Discuss outliers (high and low)
-5. Repeat until consensus
+### Estimation Process
+1. PO presents prioritized backlog items
+2. Team discusses complexity in turns
+3. Each developer estimates turns for their part
+4. Team agrees on total turns for Sprint
+5. PO confirms priority order
 
-### Velocity
-- Story points completed per Sprint
-- Use for capacity planning only
-- Don't compare teams by velocity
-- Account for iteration (average last 3 Sprints)
+### Turn Allocation Example (35-turn Sprint)
+```
+Planning:        3 turns
+Execution:      28 turns
+Review:          2 turns
+Retro:           2 turns
+TOTAL:           35 turns (configurable)
+```
 
-## Sprint Planning
+### Key Principle
+**Team commits to turns, not PO allocates turns.**
+
+## Sprint Planning (AI Teams)
 
 ### Before Planning
 - Backlog refined (top 2 Sprints ready)
 - Sprint Goal draft prepared by Product Owner
-- Team capacity calculated (vacations, conflicts)
+- Team capacity calculated (turns-based)
 
-### During Planning
-- Confirm Sprint Goal with Product Owner
-- Select items in priority order
-- Break items into tasks
-- Commit only what team believes achievable
+### AI-Specific Considerations
+- Team decides how many turns they can commit
+- PO presents priorities, team estimates turns
+- No "top-down" turn allocation
+- Buffer turns for unexpected work
 
-### Capacity Calculation
-```
-Available = Team Members × Days × Hours × (1 - Overhead)
-Overhead = Meetings + Code Reviews + Admin
-```
+### Capacity Discussion
+- Each developer estimates their turns honestly
+- Team aggregates and confirms total capacity
+- SM facilitates, does not dictate
 
-Example: 5 people × 10 days × 6 hours × 0.75 = 225 hours
+## Daily Coordination (AI Teams)
 
-## Daily Standup
+### Event-Driven Alternative
+- SM monitors blockers actively
+- Team updates status when work completes
+- No fixed 5-minute health checks
+- SM intervenes when impediments arise
 
-### Effective Standups
-- Same time, same place daily
-- 15 minutes maximum
-- Everyone speaks
-- Focus on Sprint Goal
-
-### Three Questions Template
-1. What did I **yesterday**?
-2. What will I **today**?
-3. What **blockers** do I have?
-
-### Handling Blockers
-- If raised, Scrum Master notes it
-- After standup, detail blockers
-- SM works to remove or escalate
-- Track blockers until resolved
+### When to Meet
+- Only when coordination needed
+- Async updates preferred
+- 15-min standup only if valuable
 
 ## Backlog Refinement
 
@@ -110,22 +107,23 @@ Items are ready for Sprint when:
 - Follow up in next retro
 - Limited number (3-5 max)
 
-## Definition of Done
+## Definition of Done (AI Teams)
 
-### Example DoD Checklist
-- [ ] Code written and reviewed
-- [ ] Unit tests written (>80% coverage)
-- [ ] Integration tests passing
-- [ ] Accessibility tests passed
-- [ ] Feature works on target browsers
-- [ ] Documentation updated
-- [ ] No known bugs
+### Automated Gates (100% Mandatory)
+- ESLint/Prettier: 0 errors
+- TypeScript: strict mode, 0 errors
+- Unit Tests: core business logic covered
+- SAST Scan: 0 vulnerabilities
+- CVE Check: 0 known vulnerabilities
 
-### When to Update DoD
-- New testing requirements
-- Compliance needs
-- Customer feedback
-- Process improvements
+### Manual Gates
+- Critical path code: peer review approval
+- Regular code: automated gates sufficient
+
+### NOT in DoD
+- Coverage percentage as a number game
+- Testing setter/getter methods
+- Testing configuration files
 
 ## Continuous Improvement
 

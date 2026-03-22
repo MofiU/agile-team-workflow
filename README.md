@@ -34,33 +34,26 @@ This README reflects **correct Scrum 2025**, not your original design. Key corre
 3. **Self-Organization**: Team decides how to work
 4. **Customer Collaboration**: Not contract negotiation
 
-### Sprint Capacity: Configurable Conversation Turns
+### Sprint Capacity: Turn-Based Self-Assessment
 
-**Sprint capacity is measured in conversation turns, not story points.**
+**AI teams use conversation turns as the capacity unit.**
 
-| Metric | Default | Adjustable | Reason |
-|--------|---------|------------|--------|
-| **Max turns per Sprint** | 35 | 25-40 | More buffer for emergencies |
-| **Planning** | ~3-4 turns | Yes | Sprint Planning |
-| **Execution** | ~18-22 turns | Yes | Actual development |
-| **Review + Retro** | 2 turns | Fixed | Essential |
+| Metric | Default | Notes |
+|--------|---------|-------|
+| **Max turns per Sprint** | 35 | Configurable 25-40 |
+| **Team self-assessment** | Yes | Team decides what they can commit |
+| **PO cannot override** | Yes | PO sets priority, team sets capacity |
 
-### Turn Budget Example (Default: 35 Turns)
-
+**Turn Budget Example (Default: 35 Turns)**
 ```
 Sprint Planning:     3 turns
-Daily Scrums (10):  10 turns
-Backlog Refinement:  2 turns
-Development:         18 turns
-Sprint Review:       1 turn
-Sprint Retro:        1 turn
-
-TOTAL:              35 turns (configurable)
+Execution:          28 turns (self-assessed)
+Review:             2 turns
+Retrospective:      2 turns
+TOTAL:              35 turns
 ```
 
-**Team decides what they can commit. PO does NOT override.**
-
-**Configurable**: `/team config --sprint-turns 30` (adjustable per team)
+**Key principle**: Team commits to turns based on self-assessment. PO prioritizes, team decides capacity.
 
 ### Emergency Reprioritization
 
@@ -73,30 +66,32 @@ Team: "Yes" → Remove lower priority item, add hotfix
 Team: "No" → PO decides if Sprint cancellation is warranted
 ```
 
-### Quorum-Based Attendance
+---
 
-**Not everyone must be physically present. Quorum ensures valid decisions.**
+## 🔍 Code Review Policy
 
-| Ceremony | Quorum | Must Attend |
-|----------|--------|-------------|
-| Sprint Planning | 2/3 + All Devs | All Developers (no exception) |
-| Daily Standup | None | Working developers |
-| Sprint Review | 2/3 + stakeholders | - |
-| Retrospective | 2/3 (incl PO) | PO must attend |
+### Review Requirement Matrix
 
-### Correct Sprint Flow
+| Code Type | Review Required | Why |
+|-----------|----------------|-----|
+| **Critical Path** (security, payment, auth) | 100% peer review | AI may produce flawed high-stakes code |
+| **Regular Features** | Automated gates + optional | Core logic covered by tests |
+| **Bug Fixes** | Automated gates + optional | Tests prove fix |
+| **Documentation** | None | No execution risk |
 
-```
-Sprint Planning (Quorum + All Developers)
-     ↓
-Daily Scrums (Working Developers)
-     ↓
-Sprint Review (Quorum + Stakeholders)
-     ↓
-Sprint Retrospective (Quorum Including PO)
-     ↓
-Next Sprint Planning (Fresh Start)
-```
+### Definition of Done (DoD)
+
+**Automated Gates (100% mandatory)**:
+- ESLint/Prettier: 0 errors
+- TypeScript: strict mode, 0 errors
+- Unit Tests: core business logic
+- SAST: 0 vulnerabilities
+- CVE: 0 known vulnerabilities
+
+**NOT in DoD**:
+- Coverage percentage as number
+- Testing setters/getters
+- Testing config files
 
 ---
 
@@ -156,6 +151,31 @@ Chief PO (全局战略)
 - Action items with owners
 - **PO participates as team member**
 - **Async alternative**: `@agile-team:scrum-master` 发起异步回顾
+
+### Quorum-Based Attendance
+
+**Not everyone must be physically present. Quorum ensures valid decisions.**
+
+| Ceremony | Quorum | Must Attend |
+|----------|--------|-------------|
+| Sprint Planning | 2/3 + All Devs | All Developers (no exception) |
+| Daily Standup | None | Working developers |
+| Sprint Review | 2/3 + stakeholders | - |
+| Retrospective | 2/3 (incl PO) | PO must attend |
+
+### Correct Sprint Flow
+
+```
+Sprint Planning (Quorum + All Developers)
+     ↓
+Daily Scrums (Working Developers)
+     ↓
+Sprint Review (Quorum + Stakeholders)
+     ↓
+Sprint Retrospective (Quorum Including PO)
+     ↓
+Next Sprint Planning (Fresh Start)
+```
 
 ---
 

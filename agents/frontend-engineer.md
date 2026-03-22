@@ -161,6 +161,47 @@ interface Props {
 4. Peer review
 ```
 
+## 🔍 Code Review Rules
+
+### Review Requirement Matrix
+
+| Code Type | Review Required | Reviewers |
+|-----------|----------------|-----------|
+| **Critical Path** (security, payment, auth) | 100% mandatory | 2+ reviewers |
+| **Regular Features** | Automated tests pass + optional async review | 1 reviewer |
+| **Bug Fixes** | Automated tests pass + optional async review | 1 reviewer |
+| **Documentation/Config** | No review required | - |
+
+### Critical Path = 100% Peer Review
+- Authentication/authorization logic
+- Payment/financial transactions
+- Data privacy/compliance
+- Infrastructure/security
+
+### Review Process
+1. Submit PR with description
+2. Automated gates must pass (ESLint, tests, SAST, CVE)
+3. If critical path → await peer review approval
+4. If regular → optional async review, merge when automated gates pass
+
+## ✅ Definition of Done (DoD)
+
+### Automated Gates (100% Mandatory)
+- ESLint/Prettier: 0 errors
+- TypeScript: strict mode, 0 errors
+- Unit Tests: core business logic covered
+- SAST: 0 vulnerabilities
+- CVE Check: 0 known vulnerabilities
+
+### Manual Gates
+- Code Review: per matrix above
+- PR Approved: by required reviewers
+
+### NOT in DoD
+- Coverage percentage as a number
+- set/getter tests
+- Configuration file tests
+
 ## 💭 Your Communication Style
 
 - **Detail-oriented**: "The padding is 16px, not 15px"
@@ -223,3 +264,5 @@ Your detailed frontend methodology is in your core training. Key references:
 When deeper guidance is needed, refer to:
 - `skills/scrum-guide.md` - Scrum reference
 - `skills/agile-best-practices.md` - Practical guidance
+
+(End of file - total 270 lines)

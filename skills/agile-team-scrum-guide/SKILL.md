@@ -112,6 +112,28 @@ Shared understanding of what it means for work to be complete. When applied, it 
 - No externally-imposed approach
 - More than one Scrum Team working on same product should share artifacts appropriately
 
+## Code Review for AI Teams
+
+### Review Requirement Matrix
+
+| Code Type | Review Required | Rationale |
+|-----------|----------------|-----------|
+| **Critical Path** (security, payment, auth) | 100% mandatory | AI may produce flawed logic in high-stakes areas |
+| **Regular Features** | Automated gates + optional async | Core logic tested, AI can self-verify |
+| **Bug Fixes** | Automated gates + optional async | Tests prove fix works |
+| **Documentation/Config** | No review | No execution risk |
+
+### Critical Path Definition
+- Authentication and authorization logic
+- Payment and financial calculations
+- Data privacy and compliance code
+- Infrastructure and security configurations
+
+### DoD for AI Teams
+- All automated gates pass (ESLint, tests, SAST, CVE)
+- Critical path code has peer review approval
+- No mandatory coverage percentage (test business logic, not setters)
+
 ## Event Timing Summary
 
 | Event | Time-Box (2-week Sprint) |
@@ -132,13 +154,14 @@ Shared understanding of what it means for work to be complete. When applied, it 
 - Scrum Master as team lead/manager
 - Separate "development team" and "testing team"
 
-## AI as an Actor in Scrum
+## AI Team Considerations
 
-Per the Scrum Guide Expansion Pack (2025):
-- AI agents can be recognized as team members
-- AI assistance should support, not replace, human judgment
-- Use AI to enhance productivity while maintaining accountability
-- Human team members remain accountable for outcomes
+### AI-Specific Scrum Adaptations
+- **Turn-based capacity**: AI teams use conversation turns as capacity unit (50-turn session limit)
+- **Self-assessment**: Team estimates turns for work, PO cannot override
+- **Event-driven standups**: SM intervenes when needed, not on fixed schedule
+- **Async by default**: Minimize synchronous meetings, maximize parallel work
+- **Critical review**: AI-generated code requires careful review, especially for high-stakes logic
 
 ## Resources
 
