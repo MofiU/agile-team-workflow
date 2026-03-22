@@ -1,6 +1,6 @@
 {
   "name": "agile-team-workflow",
-  "description": "Complete agile team workflow management with Scrum framework - Sprint control (SM), Requirements (PO), Kanban board, blocker tracking following 2025 Scrum Guide",
+  "description": "Complete agile team workflow with Scrum framework - Dynamic team composition, SM-controlled iteration, PO product ownership, Kanban board, blocker tracking - 2025 Scrum Guide",
   "version": "1.0.0",
   "author": {
     "name": "MofiU"
@@ -8,12 +8,15 @@
   "commands": [
     "./commands/requirements.md",
     "./commands/backlog.md",
+    "./commands/team.md",
     "./commands/sprint.md",
     "./commands/board.md",
     "./commands/standup.md",
     "./commands/retro.md",
     "./commands/review.md",
-    "./commands/blocker.md"
+    "./commands/blocker.md",
+    "./commands/handoff.md",
+    "./commands/progress.md"
   ],
   "agents": [
     "./agents/product-owner.md",
@@ -27,6 +30,8 @@
   ],
   "skills": [
     "./skills/scrum-guide.md",
-    "./skills/agile-best-practices.md"
+    "./skills/agile-best-practices.md",
+    "./skills/dynamic-team.md",
+    "./skills/handoff-workflow.md"
   ]
 }
