@@ -6,7 +6,8 @@
     "name": "MofiU"
   },
   "agents": [
-    "./agents/product-owner.md",
+    "./agents/chief-product-owner.md",
+    "./agents/area-product-owner.md",
     "./agents/scrum-master.md",
     "./agents/architect.md",
     "./agents/frontend-engineer.md",

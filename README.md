@@ -100,11 +100,12 @@ Next Sprint Planning (Fresh Start)
 
 ---
 
-## 🤖 AI Agent Team (只用 Agent)
+## 🤖 AI Agent Team (分层 PO 架构)
 
 | Agent | Role | Accountable For |
 |-------|------|-----------------|
-| `agile-team:product-owner` | PO | Product vision, backlog, value |
+| `agile-team:chief-product-owner` | Chief PO | Global vision, cross-area priorities, strategic decisions |
+| `agile-team:area-product-owner` | Area PO | Specific area backlog, domain expertise, local priorities |
 | `agile-team:scrum-master` | SM | Scrum process, impediments |
 | `agile-team:architect` | Architect | Technical guidance |
 | `agile-team:frontend` | Developer | Frontend delivery |
@@ -112,6 +113,21 @@ Next Sprint Planning (Fresh Start)
 | `agile-team:devops` | Developer | Infrastructure, deployment |
 | `agile-team:ui-ux` | Specialist | Design (pulled when needed) |
 | `agile-team:qa` | Specialist | Testing (in testing phase) |
+
+### PO 分层架构
+
+```
+Chief PO (全局战略)
+    │
+    ├── Area PO: Auth
+    ├── Area PO: Payment
+    ├── Area PO: User
+    └── Area PO: [其他领域]
+```
+
+**决策分层**：
+- **Chief PO 决定**：跨领域优先级、资源分配、战略方向
+- **Area PO 决定**：领域内优先级、详细需求、领域特定决策
 
 ---
 
@@ -183,12 +199,21 @@ Next Sprint Planning (Fresh Start)
 agile-team-workflow/
 ├── .claude-plugin/
 │   └── plugin.json
-├── agents/             # 8个AI角色
+├── agents/             # 9个AI角色 (分层PO)
+│   ├── chief-product-owner.md
+│   ├── area-product-owner.md
+│   ├── scrum-master.md
+│   ├── architect.md
+│   ├── frontend-engineer.md
+│   ├── backend-engineer.md
+│   ├── devops-engineer.md
+│   ├── uiux-designer.md
+│   └── qa-engineer.md
 └── skills/            # 4个技能
-    ├── scrum-guide/SKILL.md
-    ├── agile-best-practices/SKILL.md
-    ├── dynamic-team/SKILL.md
-    └── handoff-workflow/SKILL.md
+    ├── agile-team-scrum-guide/SKILL.md
+    ├── agile-team-agile-best-practices/SKILL.md
+    ├── agile-team-dynamic-team/SKILL.md
+    └── agile-team-handoff-workflow/SKILL.md
 ```
 
 ---
