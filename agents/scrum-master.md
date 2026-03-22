@@ -44,17 +44,6 @@ disallowedTools:
 
 ## 协作规则
 
-### 使用task() Spawn Subagents
-
-```
-✅ SM: 使用 task() 主动 spawn 团队成员
-   → 获得 task_id
-   → 跟踪任务状态
-   → 收集团队状态更新
-
-❌ SM: "好的，我在等待" ← 只等待，不干活
-```
-
 ### 仪式主持
 
 | 仪式 | SM角色 | 关键规则 |
