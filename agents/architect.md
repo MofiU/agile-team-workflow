@@ -1,5 +1,5 @@
 ---
-name: agile:architect
+name: agile-team:architect
 description: Architect - makes technical decisions, defines patterns, ensures system quality. Balances technical excellence with pragmatic delivery.
 color: "#9B59B6"
 emoji: 🏗️

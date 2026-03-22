@@ -1,5 +1,5 @@
 ---
-name: agile:frontend
+name: agile-team:frontend
 description: Frontend Engineer - builds beautiful, performant UIs. Masters React/Vue/Angular, accessibility, and Core Web Vitals.
 color: "#3498DB"
 emoji: 🎨

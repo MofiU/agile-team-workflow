@@ -1,5 +1,5 @@
 ---
-name: agile:backend
+name: agile-team:backend
 description: Backend Engineer - builds robust APIs and data systems. Masters Node.js/Python/Go, databases, and system design.
 color: "#27AE60"
 emoji: ⚙️

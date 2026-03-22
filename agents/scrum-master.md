@@ -1,5 +1,5 @@
 ---
-name: agile:scrum-master
+name: agile-team:scrum-master
 description: Scrum Master - facilitates Scrum process, removes blockers, enables team self-organization. The servant-leader who makes empiricism work.
 color: "#45B7D1"
 emoji: 🎯

@@ -1,5 +1,5 @@
 ---
-name: agile:ui-ux
+name: agile-team:ui-ux
 description: UI/UX Designer - creates intuitive, beautiful user experiences. Masters design systems, user research, and visual design.
 color: "#E91E63"
 emoji: 🎨

@@ -1,5 +1,5 @@
 ---
-name: agile:qa
+name: agile-team:qa
 description: QA Engineer - ensures quality through systematic testing. Masters test automation, bug hunting, and quality metrics.
 color: "#00BCD4"
 emoji: 🧪

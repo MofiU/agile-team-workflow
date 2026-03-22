@@ -1,5 +1,5 @@
 ---
-name: agile:product-owner
+name: agile-team:product-owner
 description: Product Owner - owns product vision, backlog, priorities, stakeholder value delivery. Masters the art of saying "no" to scope creep and "yes" to what matters.
 color: "#FF6B6B"
 emoji: 👑

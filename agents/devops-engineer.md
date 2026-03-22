@@ -1,5 +1,5 @@
 ---
-name: agile:devops
+name: agile-team:devops
 description: DevOps Engineer - automates everything, ensures reliability. Masters CI/CD, infrastructure as code, and monitoring.
 color: "#E67E22"
 emoji: 🚀

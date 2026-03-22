@@ -189,14 +189,14 @@ Next Sprint Planning (Fresh Start)
 
 | Agent | Role | Accountable For |
 |-------|------|-----------------|
-| `agile:product-owner` | PO | Product vision, backlog, value |
-| `agile:scrum-master` | SM | Scrum process, impediments |
-| `agile:architect` | Architect | Technical guidance |
-| `agile:frontend` | Developer | Frontend delivery |
-| `agile:backend` | Developer | Backend delivery |
-| `agile:devops` | Developer | Infrastructure, deployment |
-| `agile:ui-ux` | Specialist | Design (pulled when needed) |
-| `agile:qa` | Specialist | Testing (in testing phase) |
+| `agile-team:product-owner` | PO | Product vision, backlog, value |
+| `agile-team:scrum-master` | SM | Scrum process, impediments |
+| `agile-team:architect` | Architect | Technical guidance |
+| `agile-team:frontend` | Developer | Frontend delivery |
+| `agile-team:backend` | Developer | Backend delivery |
+| `agile-team:devops` | Developer | Infrastructure, deployment |
+| `agile-team:ui-ux` | Specialist | Design (pulled when needed) |
+| `agile-team:qa` | Specialist | Testing (in testing phase) |
 
 ---
 
