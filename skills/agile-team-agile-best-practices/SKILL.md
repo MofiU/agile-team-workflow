@@ -125,6 +125,38 @@ Items are ready for Sprint when:
 - Testing setter/getter methods
 - Testing configuration files
 
+## Code Review Policy (AI Teams)
+
+### Review Requirement Matrix
+
+| Code Type | Review Required | Rationale |
+|-----------|----------------|-----------|
+| **Critical Path** (security, payment, auth) | 100% peer review | AI may produce flawed high-stakes code |
+| **Regular Features** | Automated gates + optional async | Core logic covered by tests |
+| **Bug Fixes** | Automated gates + optional | Tests prove fix |
+| **Documentation/Config** | None | No execution risk |
+
+### Critical Path Definition
+- Authentication and authorization logic
+- Payment and financial calculations
+- Data privacy and compliance code
+- Infrastructure and security configurations
+
+### Who Reviews?
+- Developers review each other's code
+- Critical path requires 2+ reviewers
+- Reviewer must be a different person than author
+
+### Review Process
+1. Submit PR with description
+2. Automated gates must pass (ESLint, tests, SAST, CVE)
+3. If critical path → await peer review approval
+4. If regular → merge when automated gates pass
+
+### Code Review vs Agent Role
+Code review is a **flow/process rule**, not an agent-specific behavior.
+Agents follow these rules as part of the sprint process, regardless of their specific role.
+
 ## Continuous Improvement
 
 ### Retrospective Follow-up
