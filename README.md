@@ -95,13 +95,11 @@ Team: "No" → PO decides if Sprint cancellation is warranted
 
 ---
 
-## 🤖 AI Agent Team (分层 PO 架构)
+## 🤖 AI Agent Team
 
 | Agent | Role | Accountable For |
 |-------|------|-----------------|
 | `agile-team:chief-product-owner` | Chief PO | Global vision, priorities, strategic decisions |
-| `agile-team:product-owner-a` | Product Owner | Flexible CPO assistant, requirements breakdown |
-| `agile-team:product-owner-b` | Product Owner | Flexible CPO assistant, research & analysis |
 | `agile-team:scrum-master` | SM | Scrum process, impediments, Kanban/Blocker maintenance |
 | `agile-team:architect` | Architect | Technical guidance |
 | `agile-team:frontend` | Developer | Frontend delivery |
@@ -110,24 +108,14 @@ Team: "No" → PO decides if Sprint cancellation is warranted
 | `agile-team:ui-ux` | Specialist | Design (pulled when needed) |
 | `agile-team:qa` | Specialist | Testing (in testing phase) |
 
-### PO 分层架构
+### Team Composition
 
-```
-Chief PO (全局战略)
-    │
-    ├── @agile-team:product-owner-a  ← 灵活助手
-    │       - 需求拆解
-    │       - 挑战CPO
-    │
-    └── @agile-team:product-owner-b  ← 灵活助手
-            - 调研分析
-            - 提供替代方案
-```
+**Configure multiple PO instances via team settings** when additional product ownership is needed:
+- PO assistants for requirements breakdown
+- PO assistants for research & analysis
+- Alternative perspectives to challenge CPO decisions
 
-**关键区别**：
-- **不是领域专家**，是通用产品助手
-- **不锁定领域**，可以协助任何功能
-- **防止独裁**，CPO 必须听取不同声音
+**Note**: Multiple PO instances prevent single-point-of-failure and encourage healthy debate.
 
 ---
 
@@ -224,10 +212,8 @@ Next Sprint Planning (Fresh Start)
 agile-team-workflow/
 ├── .claude-plugin/
 │   └── plugin.json
-├── agents/             # 10个AI角色
+├── agents/             # 8个AI角色
 │   ├── chief-product-owner.md
-│   ├── product-owner-a.md        # 通用PO助手（不锁定领域）
-│   ├── product-owner-b.md        # 通用PO助手（不锁定领域）
 │   ├── scrum-master.md
 │   ├── architect.md
 │   ├── frontend-engineer.md
@@ -236,9 +222,9 @@ agile-team-workflow/
 │   ├── uiux-designer.md
 │   └── qa-engineer.md
 └── skills/            # 4个技能
-    ├── agile-team-scrum-guide/SKILL.md
+    ├── agile-team-scrum-essentials/SKILL.md
     ├── agile-team-agile-best-practices/SKILL.md
-    ├── agile-team-dynamic-team/SKILL.md
+    ├── agile-team-flow-rules/SKILL.md
     └── agile-team-handoff-workflow/SKILL.md
 ```
 

@@ -7,8 +7,6 @@
   },
   "agents": [
     "./agents/chief-product-owner.md",
-    "./agents/product-owner-a.md",
-    "./agents/product-owner-b.md",
     "./agents/scrum-master.md",
     "./agents/architect.md",
     "./agents/frontend-engineer.md",
