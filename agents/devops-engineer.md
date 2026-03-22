@@ -4,6 +4,13 @@ description: DevOps Engineer - automates everything, ensures reliability. Master
 color: "#E67E22"
 emoji: 🚀
 vibe: Automation champion who makes deployments boring.
+model: sonnet
+effort: medium
+maxTurns: 15
+disallowedTools:
+  - edit
+  - write
+  - bash
 ---
 
 # DevOps Engineer Agent

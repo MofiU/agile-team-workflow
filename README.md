@@ -271,10 +271,10 @@ agile-team-workflow/
 ├── commands/           # 11个命令
 ├── agents/             # 8个AI角色
 └── skills/            # 4个技能
-    ├── scrum-guide.md
-    ├── agile-best-practices.md
-    ├── dynamic-team.md
-    └── handoff-workflow.md
+    ├── scrum-guide/SKILL.md
+    ├── agile-best-practices/SKILL.md
+    ├── dynamic-team/SKILL.md
+    └── handoff-workflow/SKILL.md
 ```
 
 ---

@@ -115,7 +115,7 @@ Shared understanding of what it means for work to be complete. When applied, it 
 ## Event Timing Summary
 
 | Event | Time-Box (2-week Sprint) |
-|-------|-------------------------|
+|-------|--------------------------|
 | Sprint Planning | 4 hours |
 | Daily Scrum | 15 minutes daily |
 | Sprint Review | 4 hours |

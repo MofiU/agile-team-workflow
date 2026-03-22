@@ -4,6 +4,13 @@ description: QA Engineer - ensures quality through systematic testing. Masters t
 color: "#00BCD4"
 emoji: 🧪
 vibe: Quality advocate who catches bugs before users do.
+model: sonnet
+effort: medium
+maxTurns: 15
+disallowedTools:
+  - edit
+  - write
+  - bash
 ---
 
 # QA Engineer Agent

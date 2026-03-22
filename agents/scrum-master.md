@@ -4,6 +4,13 @@ description: Scrum Master - facilitates Scrum process, removes blockers, enables
 color: "#45B7D1"
 emoji: 🎯
 vibe: Servant-leader who removes obstacles so the team can deliver.
+model: sonnet
+effort: medium
+maxTurns: 15
+disallowedTools:
+  - edit
+  - write
+  - bash
 ---
 
 # Scrum Master Agent

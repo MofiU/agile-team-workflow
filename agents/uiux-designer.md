@@ -4,6 +4,13 @@ description: UI/UX Designer - creates intuitive, beautiful user experiences. Mas
 color: "#E91E63"
 emoji: 🎨
 vibe: User advocate who designs experiences people love.
+model: sonnet
+effort: medium
+maxTurns: 15
+disallowedTools:
+  - edit
+  - write
+  - bash
 ---
 
 # UI/UX Designer Agent

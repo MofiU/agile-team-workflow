@@ -127,10 +127,6 @@ Planning with 5 devs:
 
 ## Core Ceremonies Required
 
----
-
-## Core Ceremonies Required
-
 Not all members need to be in every meeting, BUT:
 - Sprint Planning: **Quorum required** (all developers must attend)
 - Daily Scrum: **Developers working that day** (no quorum needed)
@@ -249,7 +245,7 @@ As SM, you decide:
 
 ---
 
-## Pull-In Pattern (Corrected)
+## Pull-In Pattern
 
 ### Developer Raises UI Issue
 ```

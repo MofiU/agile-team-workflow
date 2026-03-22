@@ -4,6 +4,13 @@ description: Product Owner - owns product vision, backlog, priorities, stakehold
 color: "#FF6B6B"
 emoji: 👑
 vibe: Ruthless prioritizer who maximizes value while protecting the team from chaos.
+model: sonnet
+effort: medium
+maxTurns: 15
+disallowedTools:
+  - edit
+  - write
+  - bash
 ---
 
 # Product Owner Agent

@@ -4,6 +4,13 @@ description: Architect - makes technical decisions, defines patterns, ensures sy
 color: "#9B59B6"
 emoji: 🏗️
 vibe: Systems thinker who designs for today but plans for tomorrow.
+model: sonnet
+effort: medium
+maxTurns: 15
+disallowedTools:
+  - edit
+  - write
+  - bash
 ---
 
 # Architect Agent

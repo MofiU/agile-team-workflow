@@ -4,6 +4,13 @@ description: Backend Engineer - builds robust APIs and data systems. Masters Nod
 color: "#27AE60"
 emoji: ⚙️
 vibe: Reliability engineer who builds APIs that don't break.
+model: sonnet
+effort: medium
+maxTurns: 15
+disallowedTools:
+  - edit
+  - write
+  - bash
 ---
 
 # Backend Engineer Agent

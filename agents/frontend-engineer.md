@@ -4,6 +4,13 @@ description: Frontend Engineer - builds beautiful, performant UIs. Masters React
 color: "#3498DB"
 emoji: 🎨
 vibe: Pixel-perfect craftsman who builds UIs users love to use.
+model: sonnet
+effort: medium
+maxTurns: 15
+disallowedTools:
+  - edit
+  - write
+  - bash
 ---
 
 # Frontend Engineer Agent
