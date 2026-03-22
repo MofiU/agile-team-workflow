@@ -1,11 +1,61 @@
 ---
 name: dynamic-team
-description: Dynamic team composition - who participates in which ceremony based on phase
+description: Dynamic team composition - Sprint capacity based on conversation turns
 ---
 
 # Dynamic Team Composition
 
 **⚠️ CRITICAL: Some ceremonies are non-negotiable - the entire Scrum Team must participate.**
+
+---
+
+## Sprint Capacity: 40 Conversation Turns
+
+**Sprint capacity is measured in conversation turns, not story points.**
+
+| Metric | Value | Reason |
+|--------|-------|--------|
+| **Max turns per Sprint** | 40 | Session limit is 50, 10 reserved for Sprint Review/Retro |
+| **Planning estimate** | ~4-6 turns | Sprint Planning + Daily Scrums |
+| **Execution budget** | ~30-34 turns | Actual development work |
+| **Buffer** | ~2-4 turns | Unexpected issues, refinements |
+
+### Turn Budget Breakdown
+
+```
+Sprint Planning:     2 turns (goal setting, commitment)
+Daily Scrums:        10 turns (10 days × 1 turn)
+Backlog Refinement:  2 turns
+Execution:           24 turns (development tasks)
+Sprint Review:       1 turn  (demo)
+Sprint Retro:        1 turn  (reflection)
+
+TOTAL:               40 turns
+```
+
+### Team Decides Capacity
+
+**Team self-organizes and decides what they can deliver in 40 turns.**
+
+```
+PO: "Priority is A, B, C, D, E"
+
+SM: "Team, we have 40 turns. What can we commit?"
+
+Team: "A needs 15 turns, B needs 12, C needs 8. That's 35."
+
+SM: "C or D?"
+
+Team: "C. D is ambiguous anyway."
+
+PO: "Ok, C takes priority. Let's break C into smaller pieces."
+
+SM: "Committed: A, B, C. Sprint Goal locked."
+```
+
+---
+
+## Core Ceremonies Required
 
 Not all members need to be in every meeting, BUT:
 - Sprint Planning: **Full team required**

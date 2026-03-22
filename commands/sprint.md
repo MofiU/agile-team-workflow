@@ -5,21 +5,27 @@ description: Sprint management - SM controls sprint lifecycle, team commits to s
 
 # Sprint Command
 
-**⚠️ CRITICAL: SM controls Sprint lifecycle. Team commits. PO provides priorities.**
+**⚠️ CRITICAL: Team commits. PO provides priorities. SM facilitates.**
 
-This is NOT:
-- PO creating sprints
-- PO commanding the team
-- SM delivering work to PO
-
-This IS:
-- SM orchestrates sprint ceremonies
-- Team commits to Sprint Goal based on capacity
-- PO provides priorities and accepts/rejects individual items
+**Sprint capacity = 40 conversation turns** (session limit 50, 10 reserved for Review/Retro)
 
 ---
 
 ## Sprint Lifecycle
+
+### Turn Budget (40 Turns Total)
+
+| Ceremony | Turns | Notes |
+|----------|-------|-------|
+| Sprint Planning | 2 | Goal + commitment |
+| Daily Scrums (10 days) | 10 | 1 turn per day |
+| Backlog Refinement | 2 | As needed |
+| Development | 24 | Main work |
+| Sprint Review | 1 | Team demo |
+| Sprint Retrospective | 1 | Team reflection |
+| **TOTAL** | **40** | |
+
+**Team decides what they can commit in 40 turns.**
 
 ### 1. Sprint Planning (Team Commits)
 

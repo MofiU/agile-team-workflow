@@ -34,6 +34,32 @@ This README reflects **correct Scrum 2025**, not your original design. Key corre
 3. **Self-Organization**: Team decides how to work
 4. **Customer Collaboration**: Not contract negotiation
 
+### Sprint Capacity: 40 Conversation Turns
+
+**Sprint capacity is measured in conversation turns, not story points.**
+
+| Metric | Value | Reason |
+|--------|-------|--------|
+| **Max turns per Sprint** | 40 | Session limit is 50, 10 reserved for Sprint Review/Retro |
+| **Planning** | ~4-6 turns | Sprint Planning + Daily Scrum setup |
+| **Execution** | ~30-34 turns | Actual development |
+| **Buffer** | ~2-4 turns | Unexpected issues |
+
+### Turn Budget Example
+
+```
+Sprint Planning:     2 turns
+Daily Scrums (10):  10 turns
+Backlog Refinement:  2 turns
+Development:         24 turns
+Sprint Review:       1 turn
+Sprint Retro:        1 turn
+
+TOTAL:              40 turns
+```
+
+**Team decides what they can commit in 40 turns. PO does NOT override.**
+
 ### Correct Sprint Flow
 
 ```
