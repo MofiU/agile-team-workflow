@@ -1,7 +1,7 @@
 {
   "name": "agile-team-workflow",
   "description": "Complete agile team workflow with Scrum framework - Dynamic team composition, SM-controlled iteration, PO product ownership, Kanban board, blocker tracking - 2025 Scrum Guide",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "MofiU"
   },
@@ -18,9 +18,9 @@
     "./agents/qa-engineer.md"
   ],
   "skills": [
-    "./skills/agile-team-scrum-guide/SKILL.md",
+    "./skills/agile-team-scrum-essentials/SKILL.md",
     "./skills/agile-team-agile-best-practices/SKILL.md",
-    "./skills/agile-team-dynamic-team/SKILL.md",
+    "./skills/agile-team-flow-rules/SKILL.md",
     "./skills/agile-team-handoff-workflow/SKILL.md"
   ]
 }
