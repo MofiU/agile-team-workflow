@@ -100,22 +100,24 @@ Team: "No" → PO decides if Sprint cancellation is warranted
 | Agent | Role | Accountable For |
 |-------|------|-----------------|
 | `agile-team:chief-product-owner` | Chief PO | Global vision, priorities, strategic decisions |
+| `agile-team:product-owner` | PO | Challenge CPO, requirements breakdown, anti-dictatorship |
 | `agile-team:scrum-master` | SM | Scrum process, impediments, Kanban/Blocker maintenance |
 | `agile-team:architect` | Architect | Technical guidance |
-| `agile-team:frontend` | Developer | Frontend delivery |
-| `agile-team:backend` | Developer | Backend delivery |
+| `agile-team:frontend` | Developer | Frontend delivery (TDD) |
+| `agile-team:backend` | Developer | Backend delivery (TDD) |
 | `agile-team:devops` | Developer | Infrastructure, deployment |
 | `agile-team:ui-ux` | Specialist | Design (pulled when needed) |
 | `agile-team:qa` | Specialist | Testing (in testing phase) |
 
-### Team Composition
+### PO Anti-Dictatorship Protocol
 
-**Configure multiple PO instances via team settings** when additional product ownership is needed:
-- PO assistants for requirements breakdown
-- PO assistants for research & analysis
-- Alternative perspectives to challenge CPO decisions
+**Product Owner exists to prevent CPO dictatorship:**
+- Challenges CPO assumptions with evidence
+- Provides alternative perspectives
+- Breaks down requirements into testable stories
+- Ensures team voice is heard
 
-**Note**: Multiple PO instances prevent single-point-of-failure and encourage healthy debate.
+**Configure multiple PO instances via team settings** when additional product ownership is needed.
 
 ---
 
@@ -212,12 +214,13 @@ Next Sprint Planning (Fresh Start)
 agile-team-workflow/
 ├── .claude-plugin/
 │   └── plugin.json
-├── agents/             # 8个AI角色
+├── agents/             # 9个AI角色
 │   ├── chief-product-owner.md
+│   ├── product-owner.md          # Anti-dictatorship PO
 │   ├── scrum-master.md
 │   ├── architect.md
-│   ├── frontend-engineer.md
-│   ├── backend-engineer.md
+│   ├── frontend-engineer.md      # TDD-based
+│   ├── backend-engineer.md       # TDD-based
 │   ├── devops-engineer.md
 │   ├── uiux-designer.md
 │   └── qa-engineer.md
