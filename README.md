@@ -100,13 +100,13 @@ Next Sprint Planning (Fresh Start)
 
 ---
 
-## 🤖 AI Agent Team (分层 PO 架构 - 2 APO)
+## 🤖 AI Agent Team (分层 PO 架构)
 
 | Agent | Role | Accountable For |
 |-------|------|-----------------|
-| `agile-team:chief-product-owner` | Chief PO | Global vision, cross-area priorities, strategic decisions |
-| `agile-team:auth-product-owner` | Auth PO | Authentication, Authorization, Security |
-| `agile-team:payment-product-owner` | Payment PO | Payments, Billing, Subscriptions |
+| `agile-team:chief-product-owner` | Chief PO | Global vision, priorities, strategic decisions |
+| `agile-team:product-owner-a` | Product Owner | Flexible CPO assistant, requirements breakdown |
+| `agile-team:product-owner-b` | Product Owner | Flexible CPO assistant, research & analysis |
 | `agile-team:scrum-master` | SM | Scrum process, impediments, Kanban/Blocker maintenance |
 | `agile-team:architect` | Architect | Technical guidance |
 | `agile-team:frontend` | Developer | Frontend delivery |
@@ -115,22 +115,24 @@ Next Sprint Planning (Fresh Start)
 | `agile-team:ui-ux` | Specialist | Design (pulled when needed) |
 | `agile-team:qa` | Specialist | Testing (in testing phase) |
 
-### PO 分层架构（只有2个APO）
+### PO 分层架构
 
 ```
 Chief PO (全局战略)
     │
-    ├── @agile-team:auth-product-owner
-    │       └── Auth 领域：登录、安全、MFA、OAuth
+    ├── @agile-team:product-owner-a  ← 灵活助手
+    │       - 需求拆解
+    │       - 挑战CPO
     │
-    └── @agile-team:payment-product-owner
-            └── Payment 领域：支付、计费、订阅
+    └── @agile-team:product-owner-b  ← 灵活助手
+            - 调研分析
+            - 提供替代方案
 ```
 
-**决策分层**：
-- **Chief PO 决定**：跨领域优先级、资源分配、战略方向
-- **Auth PO 决定**：Auth 领域内优先级、需求、安全策略
-- **Payment PO 决定**：Payment 领域内优先级、需求、计费策略
+**关键区别**：
+- **不是领域专家**，是通用产品助手
+- **不锁定领域**，可以协助任何功能
+- **防止独裁**，CPO 必须听取不同声音
 
 ---
 
@@ -202,10 +204,10 @@ Chief PO (全局战略)
 agile-team-workflow/
 ├── .claude-plugin/
 │   └── plugin.json
-├── agents/             # 10个AI角色 (分层PO: 2APO)
+├── agents/             # 10个AI角色
 │   ├── chief-product-owner.md
-│   ├── auth-product-owner.md      # Auth领域专家
-│   ├── payment-product-owner.md   # Payment领域专家
+│   ├── product-owner-a.md        # 通用PO助手（不锁定领域）
+│   ├── product-owner-b.md        # 通用PO助手（不锁定领域）
 │   ├── scrum-master.md
 │   ├── architect.md
 │   ├── frontend-engineer.md
