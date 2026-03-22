@@ -1,83 +1,188 @@
 ---
 name: sprint
-description: Sprint planning and management - PO creates sprints with goals, reviews progress
+description: Sprint management - SM controls sprint lifecycle, team commits to sprint goal
 ---
 
-# Sprint Planning Command (Product Owner)
+# Sprint Command
 
-As the Product Owner, you create and manage Sprints to deliver value. The Sprint Goal is your commitment to stakeholders.
+**⚠️ CRITICAL: SM controls Sprint lifecycle. Team commits. PO provides priorities.**
 
-## Sprint Planning Workflow
+This is NOT:
+- PO creating sprints
+- PO commanding the team
+- SM delivering work to PO
 
-### Plan a New Sprint
+This IS:
+- SM orchestrates sprint ceremonies
+- Team commits to Sprint Goal based on capacity
+- PO provides priorities and accepts/rejects individual items
+
+---
+
+## Sprint Lifecycle
+
+### 1. Sprint Planning (Team Commits)
+
 ```
-/sprint plan [options]
+SM facilitates → PO presents priorities → Team commits to capacity
+```
+
+**Required participants**: SM, PO, All Developers
+**Timebox**: Up to 8 hours for 2-week sprint
+
+```
+/sprint planning [options]
 ```
 
 Options:
-- `--goal` or `-g`: Sprint goal statement (required)
-- `--duration` or `-d`: Duration in weeks (default: 2)
-- `--start-date`: Start date YYYY-MM-DD (default: next business day)
-- `--capacity`: Expected team capacity (story points)
+- `--goal`: Sprint goal statement (required)
+- `--sprint-id`: Sprint identifier (auto-generated if not provided)
+- `--duration`: Duration in weeks (default: 2)
 
 **Example:**
 ```
-/sprint plan --goal "Launch user authentication for Q1 launch" --duration 2 --capacity 34
+/sprint planning --goal "Complete user authentication module" --duration 2
 ```
 
-### Review Sprint Status
+### 2. Daily Scrum (Team Syncs)
+
+**Required participants**: Developers working that day
+**Optional**: SM
+**Timebox**: 15 minutes max
+
 ```
-/sprint status [sprint-id]
+/sprint daily [options]
+```
+
+Options:
+- `--yesterday`: What you did yesterday
+- `--today`: What you'll do today
+- `--blockers`: Any impediments
+
+**Example:**
+```
+/sprint daily --yesterday "Completed login form" --today "API integration" --blockers "None"
+```
+
+### 3. Sprint Review (Team Demonstrates)
+
+**⚠️ NOT a handoff. Team demonstrates. PO inspects.**
+
+**Required participants**: Full Scrum Team + Stakeholders
+**Timebox**: Up to 4 hours for 2-week sprint
+
+```
+/sprint review [sprint-id]
 ```
 
 Shows:
-- Progress toward Sprint Goal
-- Completed vs committed items
-- Blockers affecting delivery
-- Team health indicators
+- What was built (developers demo)
+- What was not completed
+- Next steps for Product Backlog
 
-### Review Sprint Report
+**After Sprint Review**: SM and Team clean up, then **fresh Sprint Planning begins**
+
+### 4. Sprint Retrospective (Team Reflects)
+
+**Required participants**: Full Scrum Team (including PO)
+**Timebox**: Up to 3 hours for 2-week sprint
+
 ```
-/sprint report [sprint-id]
+/retro start --format start-stop-continue
 ```
 
-Generated after Sprint ends:
-- Sprint Goal achievement
-- Velocity metrics
-- Items completed vs planned
-- Lessons for next Sprint
+---
 
-### Cancel Sprint (if goal is obsolete)
+## SM Responsibilities
+
+### Sprint Planning
+- Schedule and facilitate the meeting
+- Ensure team understands Sprint Goal
+- Team commits based on capacity (not SM or PO dictating)
+- Break items into tasks
+
+### During Sprint
+- Run Daily Scrums (15 min, same time daily)
+- Track blockers and remove impediments
+- Protect team from scope changes
+- Update sprint board
+
+### Sprint Review
+- Facilitate (team presents)
+- Ensure feedback is captured
+- Coordinate with PO for stakeholder engagement
+
+### Sprint Retrospective
+- Facilitate the session
+- Create safe space for honest feedback
+- Ensure action items are tracked
+
+---
+
+## PO Responsibilities
+
+### Sprint Planning
+- Present top-priority backlog items
+- Answer questions about requirements
+- Clarify acceptance criteria
+- **Does NOT commit the team**
+
+### During Sprint
+- Be available for clarifications
+- Resist scope changes
+- Update backlog based on learning
+
+### Sprint Review
+- Inspect the increment
+- Accept/reject individual items (not the sprint)
+- Gather stakeholder feedback
+
+### Sprint Retrospective
+- **Participate as a team member**
+- Share perspective on collaboration
+- Commit to improvements
+
+---
+
+## Team Commitments
+
+**Developers**:
+- Commit to what they can realistically deliver
+- Break work into tasks
+- Update progress daily
+- Raise blockers immediately
+
+**The team self-organizes** - SM facilitates, doesn't manage.
+
+---
+
+## Sprint States
+
+| State | Description |
+|-------|-------------|
+| `planned` | Sprint planned, not started |
+| `active` | Sprint in progress |
+| `review` | Sprint ended, review scheduled |
+| `completed` | Review done, retro done |
+
+---
+
+## Cancel Sprint
+
+Only cancel if Sprint Goal is no longer valuable.
+
 ```
 /sprint cancel [sprint-id] --reason "Business priorities changed"
 ```
 
-Only cancel if Sprint Goal is no longer valuable.
-
-## Your Responsibilities as PO
-
-### Sprint Planning
-- Present the Sprint Goal clearly
-- Communicate product priorities
-- Make scope decisions
-- Commit to delivering value
-
-### During Sprint
-- Remain available for clarification
-- Resist scope changes unless critical
-- Monitor progress toward goal
-- Make acceptance decisions
-
-### Sprint Review
-- Demonstrate completed value
-- Gather stakeholder feedback
-- Adapt Product Backlog based on feedback
-- Plan next Sprint
+---
 
 ## 2025 Scrum Guide
 
-The Sprint Goal provides a shared objective. Even if the Product Backlog items change, the Sprint Goal remains the focus.
+The Sprint Goal provides a shared objective. Even if Product Backlog items change, the Sprint Goal remains the focus. The Developers maintain the Sprint Goal.
+
+---
 
 ## Data Storage
 
-Sprint data stored in `.claude/agile/sprints.json` - you own this as PO.
+Sprint data stored in `.claude/agile/sprints.json`.

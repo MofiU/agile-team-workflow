@@ -5,100 +5,167 @@ description: Dynamic team composition - who participates in which ceremony based
 
 # Dynamic Team Composition
 
-Not all team members participate in every ceremony. SM orchestrates who attends based on the current phase and needs.
+**⚠️ CRITICAL: Some ceremonies are non-negotiable - the entire Scrum Team must participate.**
 
-## Phase-Based Participation
+Not all members need to be in every meeting, BUT:
+- Sprint Planning: **Full team required**
+- Daily Scrum: **Only people working that day**
+- Sprint Review: **Full team + stakeholders**
+- Sprint Retrospective: **Full team required** (SM facilitates)
+
+---
+
+## Phase-Based Participation (Corrected)
 
 ### Discovery Phase
 **When**: Requirements gathering, design work
 
 **Includes**: SM, PO, UI/UX, Architect
 **Excludes**: Developers, QA (until design ready)
+**Note**: This is PRE-Sprint work, not Sprint ceremonies
 
 ### Planning Phase
-**When**: Sprint planning, backlog refinement
+**When**: Sprint planning
 
-**Includes**: SM, PO, relevant Developers, Architect
-**Excludes**: Team members not working next Sprint
+**Required**: 
+- SM (facilitates)
+- PO (provides priorities)
+- **All Developers** (they make the commitment!)
+- Architect (technical guidance)
+
+**Excluded**: 
+- QA (unless needed for test feasibility)
+- UI/UX (unless critical design decisions needed)
+
+**Why all developers**: Team self-organization requires everyone to hear the discussion and commit together.
 
 ### Development Phase
 **When**: Active coding, implementation
 
-**Includes**: SM, assigned Developers, DevOps (when needed)
-**Excludes**: UI/UX (unless flagged by developer)
-**Note**: UI/UX only pulled in when developer raises UI issue
+**Includes**: 
+- SM (coordinate)
+- Assigned Developers
+- DevOps (when needed for deployment)
+- Pull in UI/UX **only when developer raises issue**
+
+**Note**: This is between Daily Scrums - no formal ceremony
 
 ### Testing Phase
 **When**: QA testing, bug fixes
 
-**Includes**: SM, QA, Developers (for bug fixes)
-**Excludes**: UI/UX (unless design issues found)
+**Includes**: 
+- Developers (for bug fixes)
+- QA (owns testing)
+
+**Excludes**: UI/UX (unless design-related bug)
 
 ### Deployment Phase
 **When**: Release, deployment
 
-**Includes**: SM, DevOps, Developer who built it
-**Excludes**: Most of team
-
-### Review Phase
-**When**: Sprint review, retrospective
-
 **Includes**: 
-- Sprint Review: SM, PO, invited Stakeholders
-- Retrospective: Full team
+- DevOps (leads)
+- Developer who built it
+- SM (coordinate)
 
-## Ceremony Matrix
+### Sprint Review
+**Required**: 
+- **Full Scrum Team** (SM, PO, All Developers)
+- **Stakeholders** (invited by PO)
 
-| Ceremony | Required | Optional | Excluded |
-|----------|----------|----------|----------|
-| Sprint Planning | SM, PO | Architect, Lead Dev | QA, UI/UX |
-| Daily Standup | Devs in Sprint | SM | Not in Sprint |
-| Backlog Refinement | SM, PO | Devs, Architect | QA |
-| Sprint Review | SM, PO | Stakeholders | - |
-| Retrospective | SM, Team | PO | Stakeholders |
-| Blocker Sync | SM | Affected members | Unaffected |
+**Why full team**: 
+- Developers demonstrate their own work
+- Team sees the complete picture
+- Collective accountability
 
-## SM Orchestration
+**SM role**: Facilitator, not presenter
+
+### Sprint Retrospective
+**Required**: 
+- **Full Scrum Team** (SM, PO, All Developers)
+
+**PO participation**: Required - PO is part of the team
+
+**SM role**: Facilitator, may also participate as team member
+
+**Why full team**: Trust and transparency require everyone
+
+---
+
+## Ceremony Matrix (Corrected)
+
+| Ceremony | Required | Optional | Excluded | Notes |
+|----------|----------|----------|----------|-------|
+| Sprint Planning | **SM, PO, All Devs** | Architect | QA, UI/UX | All Devs must commit |
+| Daily Standup | Devs working today | SM | Not working today | 15 min max |
+| Backlog Refinement | SM, PO | Devs (relevant) | - | |
+| Sprint Review | **Full Team + Stakeholders** | - | - | Developers demo |
+| Retrospective | **Full Team (incl PO)** | - | - | SM facilitates |
+| Blocker Sync | SM + Affected | - | Unaffected | |
+
+---
+
+## SM Orchestration (Corrected)
 
 As SM, you decide:
 
-1. **Who to invite** to each ceremony
-2. **When to pull in** additional expertise
-3. **When to excuse** people from ceremonies
-4. **How to structure** meetings for phase
+1. **When to hold additional meetings** (syncs, ad-hoc)
+2. **Who to pull in** for specific expertise
+3. **How to timebox** ceremonies
+4. **When to excuse** people from non-core ceremonies
 
-## Pull-In Pattern
+**You CANNOT excuse people from**:
+- Sprint Planning (all devs needed for commitment)
+- Sprint Review (all devs needed for demo)
+- Retrospective (all team needed for trust)
+
+---
+
+## Pull-In Pattern (Corrected)
 
 ### Developer Raises UI Issue
 ```
 Developer: "UI doesn't match spec"
-SM: Pull in UI/UX for clarification
+SM: *arranges time with UI/UX* → Developer and UI/UX sync
+SM: Not in standup, scheduled separately
 ```
 
 ### Technical Blocker
 ```
 Developer: "Database migration blocked"
-SM: Pull in Architect or DBA
+SM: Pull in Architect or DBA for specific consultation
+SM: Document resolution in blocker log
 ```
 
 ### QA Finds Bug
 ```
 QA: "Critical bug in auth flow"
-SM: Pull in relevant Developer
+SM: Notify relevant Developer → sync scheduled
+SM: No need for full team unless major
 ```
+
+---
 
 ## Communication
 
-### Notify Appropriate People
+### Notify Team Members
 ```
-/team notify "Sprint planning in 30 min" --to planning
-/team notify "Daily standup starting" --to daily
-/team notify "Design review needed" --to UI/UX
+/team ceremony planning --sprint sprint-123
+/team ceremony review --sprint sprint-123  
+/team ceremony retro --sprint sprint-123
 ```
 
-## Dynamic Team Benefits
+### Dynamic Team DOES NOT Mean
 
-1. **Efficiency**: People only attend relevant meetings
-2. **Focus**: Phase-appropriate expertise
-3. **Cost**: Reduced meeting time
-4. **Engagement**: People care about meetings they attend
+- "I only work on my stuff"
+- "I skip ceremonies I don't like"
+- "SM decides who shows up to core ceremonies"
+
+---
+
+## Benefits of Correct Dynamic Team
+
+1. **Commitment**: Team commits because they participated in planning
+2. **Transparency**: Everyone sees what everyone else is doing
+3. **Trust**: Retrospective builds team trust
+4. **Accountability**: Developers demo their own work
+5. **Self-organization**: Team decides how to divide work

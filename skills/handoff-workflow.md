@@ -1,137 +1,203 @@
 ---
 name: handoff-workflow
-description: Handoff workflow - SM delivers to PO, PO validates, commands next iteration
+description: Sprint Review and handoff workflow - collaboration, not approval
 ---
 
-# Handoff Workflow
+# Sprint Review & Handoff Workflow
 
-The critical交接 between SM and PO after each iteration.
+**⚠️ IMPORTANT: Sprint Review is NOT a delivery handoff. It is a collaborative inspection of Increment.**
 
-## Handoff Sequence
+Standard Scrum treats Sprint Review as:
+- Team demonstrates what they built
+- PO and stakeholders inspect and adapt
+- Collaboration, not approval
 
+**Your current design treats it as: SM delivers → PO approves → PO commands next Sprint**
+
+This is waterfall disguised as Scrum.
+
+---
+
+## What Sprint Review Actually Is
+
+### Wrong (Your Current Model)
 ```
-SM: Sprint ends
-    ↓
-SM: Prepares delivery report
-    ↓
-SM: Requests handoff to PO
-    ↓
-PO: Reviews deliverables
-    ↓
-PO: Validates against acceptance criteria
-    ↓
-┌─────────────────────────────────────┐
-│  PO Decision:                        │
-│                                       │
-│  ACCEPTED → PO commands next iteration│
-│  REJECTED → SM fixes issues          │
-│  CONDITIONAL → SM meets conditions   │
-└─────────────────────────────────────┘
-    ↓
-SM: Plans next Sprint (if accepted)
+SM: "We completed the sprint. Please approve."
+PO: "I approve. Continue to next sprint."
 ```
 
-## SM's Delivery Responsibilities
-
-### Before Handoff
-- Ensure all completed items are in DONE status
-- Document remaining items
-- Prepare delivery report
-- List blockers encountered
-- Note team performance
-
-### Delivery Report Contents
+### Correct (Scrum 2025)
 ```
-## Sprint [N] Delivery Report
-
-### Sprint Goal
-[Original goal]
-
-### Goal Achievement
-[Achieved/Partially Achieved/Not Achieved]
-
-### Deliverables
-- [Deliverable 1] ✓
-- [Deliverable 2] ✓
-- [Deliverable 3] ✗ (carried to next Sprint)
-
-### Metrics
-- Velocity: X story points
-- Tasks completed: Y/Z
-- Blockers resolved: Z/A
-
-### Blockers Encountered
-- [Blocker 1] - Resolved
-- [Blocker 2] - Carried over
-
-### Team Performance
-[Assessment]
-
-### Recommendations
-[For next Sprint]
+Team: "We built X, Y, Z. Here's the demo."
+PO: "Great. I have feedback on Y..."
+Stakeholders: "What about integration with system Z?"
+Team: "We'll address that in next Sprint planning."
+SM: "Let's capture this for the backlog."
 ```
 
-## PO's Review Responsibilities
+---
 
-### Review Checklist
-- [ ] Deliverables match Sprint Goal?
-- [ ] Quality acceptable (no critical bugs)?
-- [ ] Acceptance criteria met?
-- [ ] No unresolved critical blockers?
-- [ ] Stakeholder value delivered?
+## Correct Sprint Review Flow
 
-### PO Decision Options
+### 1. Team Presents Increment
+- Show working software
+- Discuss what was done
+- Be transparent about what wasn't done
 
-**ACCEPTED**
+### 2. Collaborate on Feedback
+- PO and stakeholders ask questions
+- Discuss what next steps should be
+- Identify new items for backlog
+
+### 3. PO Makes Item Decisions
+- **Accept**: Item meets Definition of Done → moves to Done
+- **Reject**: Item doesn't meet criteria → returns to backlog
+- **Partial**: Item needs rework → backlog with priority
+
+### 4. Update Backlog Together
+- Add new insights from review
+- Adjust priorities based on feedback
+- Plan doesn't start until planning meeting
+
+---
+
+## What SM Does NOT Do
+
+| ❌ Your SM Does | ✅ Correct SM |
+|-----------------|---------------|
+| "Delivers to PO" | Facilitates team demo |
+| "Requests PO approval" | Supports collaboration |
+| "Commands next sprint" | Team decides capacity |
+| Acts as intermediary | Removes self from middle |
+
+---
+
+## What PO Does NOT Do
+
+| ❌ Your PO Does | ✅ Correct PO |
+|-----------------|---------------|
+| "Approves sprint completion" | Inspects increment |
+| "Commands next sprint" | Collaborates on priorities |
+| Reviews only with SM | Engages with full team |
+| Gatekeeper role | Product expert |
+
+---
+
+## Sprint Review Facilitator Role
+
+SM facilitates, but **team presents**:
+
 ```
-/handoff review HANDOFF-123 --decision accepted
+SM: "Sprint Review for Sprint 12. Team, please demonstrate."
+
+Team Member 1: Shows feature A
+Team Member 2: Shows feature B
+
+PO: "Feature B - can we see error handling?"
+Developer: *demonstrates*
+
+SM: "Recording that. PO, any blockers for acceptance?"
+PO: "No, B meets criteria. A needs one fix."
+SM: "A developer - please update status to 'needs rework'."
 ```
 
-**REJECTED** (with reason)
+---
+
+## Definition of Done vs Acceptance Criteria
+
+### DoD (Team's Commitment)
+- Code reviewed
+- Tests passing
+- Deployed to environment
+- Meets team's quality standards
+
+### Acceptance Criteria (PO's Requirement)
+- Business value delivered
+- User need satisfied
+- Stakeholder expectations met
+
+**Critical**: DoD is binary (done/not done). Acceptance criteria may require negotiation.
+
+---
+
+## Next Sprint Planning - Independent Start
+
+Sprint Review ends → Next Sprint Planning is a **fresh start**:
+
 ```
-/handoff review HANDOFF-123 --decision rejected --feedback "Auth module has critical bugs"
+Sprint 12 Review Complete
+        ↓
+SM: "Great collaboration. Rest day tomorrow."
+        ↓
+Sprint 13 Planning (NEW meeting)
+        ↓
+PO: "Based on feedback, priority is now X, Y, Z"
+Team: "We can commit to X and Y based on capacity"
+SM: "Locked. Let's break into tasks."
 ```
 
-**CONDITIONAL** (with conditions)
+**PO does NOT "approve" or "command" next sprint.** Team commits based on their capacity and PO's priorities.
+
+---
+
+## Blocker Resolution Flow
+
+If PO rejects an item at Sprint Review:
+
 ```
-/handoff review HANDOFF-123 --decision conditional --conditions "Fix critical bugs, complete documentation"
+PO: "Item AUTH-3 doesn't meet acceptance criteria."
+
+SM: "What's missing?"
+
+PO: "The error messages aren't user-friendly."
+
+Team Dev: "That's a quick fix. 1 hour."
+
+SM: "Can we get that done today?"
+
+Team: "Yes."
+
+SM: "Update AUTH-3 to 'in progress', target today."
+
+        ↓
+Later that day:
+        
+Team: "AUTH-3 fixed."
+SM: "PO, please verify."
+PO: "Approved. Moving to Done."
 ```
 
-## After Handoff Accepted
+**Not**: "PO sends it back to backlog and waits for next sprint."
 
-### PO Actions
-1. Communicate to stakeholders
-2. Adjust Product Backlog if needed
-3. Review upcoming priorities
-4. Command SM for next iteration
+---
 
-### PO Commands Next Iteration
+## Why This Matters
+
+Your "handoff" model creates:
+- SM as middleman
+- PO as bottleneck
+- Team as executor
+- Accountability gap
+
+Correct model creates:
+- Team accountability
+- PO as product expert (not approver)
+- SM as facilitator (not manager)
+- Continuous improvement
+
+---
+
+## Corrected Handoff Definition
+
+There IS a valid "handoff" concept:
+
+**To another team/system**:
 ```
-/handoff next --focus "Payment integration" --continue true
+Sprint Review: "Auth module is done."
+
+Ops: "Great. We'll deploy next Tuesday."
+
+Team: "Here's the runbook."
 ```
 
-## Continuous PO Activities
-
-During iteration, PO should:
-
-### Product Investigation
-- Use the product as a user would
-- Identify friction points
-- Note improvement opportunities
-- Gather stakeholder feedback
-
-### Backlog Management
-- Add new requirements from user feedback
-- Adjust priorities based on learning
-- Refine user stories
-- Split epics into stories
-
-### Market Analysis
-- Competitive analysis
-- User behavior tracking
-- Industry trends
-- Technical feasibility review
-
-## Data Storage
-
-Handoff records stored in `.claude/agile/handoffs.json`.
+This is **coordination**, not **approval**.

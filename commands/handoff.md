@@ -1,94 +1,151 @@
 ---
 name: handoff
-description: Handoff - SM delivers to PO, PO validates, commands next iteration
+description: Handoff - coordination with external teams after sprint completion
 ---
 
 # Handoff Command
 
-The critical handoff between SM and PO after each iteration.
+**⚠️ THIS IS NOT: SM delivers to PO. That is Sprint Review.**
+
+This command is for **external handoff** - coordinating with other teams/systems after Sprint Review:
+- DevOps (deployment)
+- Another squad (integration)
+- QA (handoff testing)
+- Support (knowledge transfer)
+
+---
+
+## When to Use This
+
+```
+Sprint Review Complete
+        ↓
+Internal: Team reflects in Retrospective
+        ↓
+External: Coordinate with other teams
+```
+
+Example scenarios:
+- DevOps takes deployment
+- API team takes microservice
+- QA team takes for regression
+- Support team gets knowledge base
+
+---
 
 ## Handoff Workflow
 
-### SM Requests Handoff
+### 1. Initiate Handoff
 ```
-/handoff request [options]
+/handoff initiate [options]
 ```
 
 Options:
 - `--sprint`: Sprint ID (required)
-- `--deliverables`: What was delivered
-- `--status`: completed|partial|cancelled
-- `--notes`: Additional notes
+- `--to`: Target team/person (required)
+- `--deliverables`: What is being handed off
+- `--type`: `deployment` | `integration` | `knowledge` | `testing`
 
 **Example:**
 ```
-/handoff request --sprint sprint-123 --deliverables "User auth module, API endpoints" --status completed
+/handoff initiate --sprint sprint-123 --to "DevOps" --deliverables "Auth module v2.1" --type deployment
 ```
 
-### PO Reviews Delivery
+### 2. Confirm Receipt
 ```
-/handoff review [handoff-id] [options]
+/handoff confirm [handoff-id] [options]
 ```
 
 Options:
-- `--decision`: accepted|rejected|conditional
-- `--feedback`: Review feedback
-- `--conditions`: Conditions for acceptance (if conditional)
+- `--status`: `accepted` | `rejected` | `pending-info`
+- `--feedback`: Additional notes
+- `--timeline`: Expected completion
 
 **Example:**
 ```
-/handoff review HANDOFF-123 --decision accepted --feedback "Great work! Auth is solid."
+/handoff confirm HANDOFF-456 --status accepted --timeline "Deploy by Friday"
 ```
 
-### PO Commands Next Iteration
+### 3. Track Status
 ```
-/handoff next [options]
-```
-
-Options:
-- `--sprint`: Next sprint number (auto-generated)
-- `--focus`: Focus areas for next sprint
-- `--changes`: Changes to team composition
-- `--continue`: SM continues with next sprint
-
-**Example:**
-```
-/handoff next --focus "Payment integration, Bug fixes" --continue true
+/handoff status [handoff-id]
 ```
 
-## Handoff States
+Shows:
+- Handoff details
+- Current status
+- Timeline
+- Any blockers
+
+### 4. Handoff Report
+```
+/handoff report [sprint-id]
+```
+
+Shows all handoffs from a sprint:
+- Who received what
+- Status of each
+- Timeline adherence
+
+---
+
+## Internal vs External
+
+| Type | This Command | Sprint Review |
+|------|--------------|---------------|
+| Purpose | Coordinate with other teams | Inspect increment |
+| Participants | Team + external party | Full team + stakeholders |
+| Goal | Transfer ownership | Gather feedback |
+| Timing | After Sprint Review | End of Sprint |
+
+---
+
+## DevOps Handoff Example
 
 ```
-pending → reviewed → accepted/rejected
-                      ↓
-              [conditional] → conditions met → accepted
+SM: Sprint Review complete. Auth module ready for deploy.
+
+DevOps: Great. What's the handoff?
+
+SM: 
+/handoff initiate --sprint sprint-123 --to DevOps --deliverables "Auth module, DB migrations, runbook" --type deployment
+
+DevOps:
+/handoff confirm HANDOFF-789 --status accepted --timeline "Tuesday deploy"
+
+        ↓ (after deploy)
+
+DevOps:
+/handoff confirm HANDOFF-789 --status accepted --feedback "Deployed successfully"
 ```
 
-## Handoff Report Contents
+---
 
-When SM requests handoff:
-- Sprint goal achievement
-- Deliverables completed
-- Blockers encountered
-- Team performance metrics
-- Remaining items
-- Recommended next steps
+## Knowledge Transfer Example
 
-## PO Review Checklist
+```
+SM: Sprint done. We built a new knowledge base article.
 
-- [ ] Deliverables match Sprint Goal?
-- [ ] Quality acceptable?
-- [ ] Acceptance criteria met?
-- [ ] No critical blockers?
-- [ ] Stakeholder value delivered?
+Support: Can you walk me through it?
 
-## After Acceptance
+SM:
+/handoff initiate --sprint sprint-123 --to Support --deliverables "KB-123: Auth module guide" --type knowledge
 
-Once PO accepts:
-1. PO communicates to stakeholders
-2. PO adjusts Product Backlog if needed
-3. PO commands SM for next iteration
-4. SM plans next Sprint
+Support:
+/handoff confirm HANDOFF-789 --status accepted
+```
+
+---
+
+## What NOT To Use This For
+
+| ❌ Wrong Use | ✅ Correct Use |
+|-------------|---------------|
+| SM → PO "delivery" | Team → DevOps (deployment) |
+| PO "approval" | Team → QA (testing) |
+| Sprint "acceptance" | Team → Another squad (integration) |
+
+---
 
 ## Data Storage
 
