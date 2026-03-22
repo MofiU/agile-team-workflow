@@ -1,11 +1,11 @@
 ---
 name: retro
-description: Sprint retrospective - start, collect feedback, vote, and generate action items
+description: Sprint retrospective - SM facilitates, team reflects, improvements planned
 ---
 
 # Sprint Retrospective Command
 
-Use this command to conduct sprint retrospectives following Scrum practices.
+The Sprint Retrospective is where the team reflects on how to improve. SM facilitates.
 
 ## Retro Workflow
 
@@ -19,9 +19,8 @@ Options:
   - `start-stop-continue`: What to start, stop, continue (default)
   - `mad-sad-glad`: Emotional check-in format
   - `4ls`: Liked, Learned, Lacked, Longed For
-  - `sailboat`: Wind (positives), Anchor (negatives), Rock (risks), Island (goals)
+  - `sailboat`: Wind, Anchor, Rock, Island
   - `starfish`: Keep, More, Less, Stop, Start
-  - `flower`: 6 petals for different aspects
 
 **Example:**
 ```
@@ -34,34 +33,16 @@ Options:
 ```
 
 Options:
-- `--type`: Feedback category (depends on format)
+- `--type`: Feedback category
 - `--content`: Feedback text (required)
-- `--author`: Author name (optional for anonymity)
-
-**Format-specific Categories:**
-
-**start-stop-continue:**
-- `start`: Things the team should start doing
-- `stop`: Things the team should stop doing
-- `continue`: Things the team should continue doing
-
-**mad-sad-glad:**
-- `mad`: Frustrating experiences
-- `sad`: Disappointing experiences
-- `glad`: Positive experiences
-
-**4ls:**
-- `loved`: Things enjoyed
-- `learned`: Knowledge gained
-- `lacked`: Missing elements
-- `longed-for`: Desired improvements
+- `--author`: Author name (optional)
 
 ### Vote on Feedback
 ```
 /retro vote [feedback-id]
 ```
 
-Team members vote on important feedback items to prioritize action planning.
+Team votes to prioritize feedback.
 
 ### Generate Action Items
 ```
@@ -69,37 +50,40 @@ Team members vote on important feedback items to prioritize action planning.
 ```
 
 Options:
-- `--format`: Output format (list|board)
-- `--top`: Number of top items to action (default: 5)
+- `--top`: Number of top items (default: 5)
 
-Creates actionable items from the most voted feedback.
+Creates actionable items from feedback.
 
 ### Retro Report
 ```
-/retro report
+/retro report [sprint-id]
 ```
 
-Generates a comprehensive retro report including:
-- Feedback summary by category
+Shows:
+- Feedback by category
 - Vote counts
 - Action items
-- Improvement recommendations
+- Improvements planned
 
-## Retrospective Best Practices
+## Your Role as SM
 
-### Guidelines (2025 Scrum Guide)
-- Held at the end of each Sprint
-- Inspect how the last Sprint went regarding individuals, interactions, tools, Definition of Done
-- Create a plan for implementing improvements
-- Time-box to 3 hours for a 2-week sprint
+### During Retrospective
+- Facilitate the session
+- Create safe space for feedback
+- Ensure all voices are heard
+- Focus on actionable improvements
 
-### Blending Formats
-Combine elements from different formats:
-- Sailboat + 4ls: Use wind/anchor for team, 4ls for personal growth
-- Start-Stop-Continue + Starfish: Start/stop/continue with the 5 Starfish categories
+### After Retrospective
+- Track action items
+- Follow up with team
+- Measure improvement impact
+
+## 2025 Scrum Guide
+
+The Sprint Retrospective is an opportunity for the Scrum Team to inspect itself and create a plan for improvements.
 
 ## Data Storage
 
-Retro data is stored in:
-- `.claude/agile/retros.json` - Feedback entries
+Retro data stored in:
+- `.claude/agile/retros.json` - Feedback
 - `.claude/agile/retro-actions.json` - Action items

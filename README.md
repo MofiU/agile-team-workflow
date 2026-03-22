@@ -1,99 +1,114 @@
 # Agile Team Workflow Plugin for Claude Code
 
-A comprehensive Claude Code plugin that brings an entire Agile team into your development workflow. Manages sprints, backlogs, standups, retrospectives, reviews, and blockers using the Scrum framework (2025 Guide).
+Complete agile team workflow management with Scrum framework. **SM controls the iteration**, PO manages product, team has personal Kanban boards.
 
-## 🤖 AI Agent Team
+## 🎯 Core Design
 
-This plugin provides 8 specialized AI agents representing your Agile team:
+### Role Responsibilities
 
-| Agent | Role | Color |
-|------|------|-------|
-| `agile:product-owner` | Product Owner - maximizes value, owns backlog | #FF6B6B |
-| `agile:scrum-master` | Scrum Master - facilitates ceremonies, removes blockers | #45B7D1 |
-| `agile:architect` | Architect - technical decisions, system design | #9B59B6 |
-| `agile:frontend` | Frontend Engineer - UI development | #3498DB |
-| `agile:backend` | Backend Engineer - API and services | #27AE60 |
-| `agile:devops` | DevOps Engineer - CI/CD, infrastructure | #E67E22 |
-| `agile:ui-ux` | UI/UX Designer - user experience | #E91E63 |
-| `agile:qa` | QA Engineer - testing and quality | #00BCD4 |
+| Role | Responsibilities |
+|------|-----------------|
+| **Product Owner** | Receives user requirements, owns backlog, sets priorities |
+| **Scrum Master** | Controls iteration lifecycle, facilitates ceremonies, removes blockers |
+| **Team Members** | Execute tasks, report progress, participate in retrospectives |
+
+### User Flow
+
+```
+用户提交需求 → PO接收需求
+     ↓
+PO创建团队，分配任务
+     ↓
+SM控制迭代 → 每日站会 → 任务板更新
+     ↓
+迭代结束 → SM确认交付 → 下一轮迭代
+```
 
 ## 📋 Commands
 
-### Sprint Management
+### 1. Requirements (用户需求)
 ```bash
-/sprint create --name "Sprint 1" --goal "Complete user auth" --duration 2
+/requirements submit --title "登录功能" --from "客户A" --priority P1
+/requirements view --status pending
+/requirements approve REQ-123
+```
+
+### 2. Product Backlog (PO管理)
+```bash
+/backlog add --title "Google登录" --from-req REQ-123 --priority P1 --points 8
+/backlog view --top 20
+/backlog prioritize AUTH-1 AUTH-2 PAY-1
+```
+
+### 3. Sprint Management (SM控制)
+```bash
+/sprint create --goal "完成用户认证模块" --duration 2
 /sprint start sprint-123
 /sprint end sprint-123
-/sprint list
 /sprint report sprint-123
 ```
 
-### Backlog Management
+### 4. Kanban Board (个人任务清单)
 ```bash
-/backlog create --title "User Login" --priority P1 --points 5
-/backlog list --status ready
-/backlog update AUTH-42 --status done
+/board view --sprint sprint-123
+/board task --title "实现登录表单" --assignee "Alice" --story-id AUTH-42
+/board move TASK-123 in-progress
+/board mine --status todo
 ```
 
-### Daily Standup
+### 5. Daily Standup
 ```bash
-/standup start --format three-questions
-/standup update --member "John" --yesterday "Completed login" --today "API integration" --blockers "Need keys"
+/standup start sprint-123
+/standup update --yesterday "完成表单" --today "API对接" --blockers "需要凭证"
 /standup summary
 ```
 
-### Sprint Retrospective
+### 6. Blocker Tracking
+```bash
+/blocker track --description "API超时" --impact high --affected "PAY-15"
+/blocker view --status active
+/blocker resolve BLOCKER-123 --resolution "已重启服务"
+```
+
+### 7. Sprint Retrospective
 ```bash
 /retro start --format start-stop-continue
-/retro feedback --type start --content "Start daily code reviews"
+/retro feedback --type continue --content "每日站会很有用"
 /retro actions --top 5
 ```
 
-### Sprint Review
+### 8. Sprint Review
 ```bash
-/review start --sprint sprint-123
-/review demo --title "Auth Feature" --url "https://demo.example.com"
-/review feedback --type positive --content "Great UX!"
+/review schedule --sprint sprint-123 --participants "CEO,CTO"
+/review demo --title "认证模块" --url "https://demo.example.com"
+/review feedback --type positive --content "用户体验很好"
 ```
 
-### Blocker Management
-```bash
-/blocker create --description "API credentials expired" --impact high --blocked "Alice,Bob"
-/blocker list --status active
-/blocker resolve BLOCKER-123 --resolution "New credentials issued"
-```
+## 🤖 AI Agent Team
 
-## 🎯 Skills
+| Agent | Role | Description |
+|-------|------|-------------|
+| `agile:product-owner` | Product Owner | Receives requirements, manages backlog |
+| `agile:scrum-master` | Scrum Master | Controls iteration, removes blockers |
+| `agile:architect` | Architect | Technical decisions, system design |
+| `agile:frontend` | Frontend | UI development |
+| `agile:backend` | Backend | API and services |
+| `agile:devops` | DevOps | CI/CD, infrastructure |
+| `agile:ui-ux` | UI/UX | Design, usability |
+| `agile:qa` | QA | Testing, quality |
 
-This plugin includes two reference skills:
-
-- **scrum-guide**: 2025 Scrum Guide reference with all Scrum principles
-- **agile-best-practices**: Practical guidance for estimation, retrospectives, and continuous improvement
-
-## 📦 Installation
-
-### Option 1: From GitHub
-
-```bash
-git clone https://github.com/MofiU/agile-team-workflow ~/.claude/plugins/agile-team-workflow
-```
-
-### Option 2: Add to your Claude Code config
-
-In your `.claude/settings.json`:
-
-```json
-{
-  "plugins": [
-    "agile-team-workflow"
-  ]
-}
-```
-
-Or use the `/plugin install` command in Claude Code:
+## 📁 Data Storage
 
 ```
-/plugin install MofiU/agile-team-workflow
+.claude/agile/
+├── requirements.json    # 用户需求
+├── backlog.json        # 产品待办
+├── sprints.json         # 迭代记录
+├── board.json          # 看板数据
+├── standups.json       # 每日站会
+├── retros.json         # 回顾会议
+├── blockers.json       # 阻塞管理
+└── reviews.json        # 评审会议
 ```
 
 ## 🏗️ Architecture
@@ -101,88 +116,39 @@ Or use the `/plugin install` command in Claude Code:
 ```
 agile-team-workflow/
 ├── .claude-plugin/
-│   └── plugin.json          # Plugin manifest
-├── commands/                 # Slash commands
-│   ├── sprint.md
-│   ├── backlog.md
-│   ├── standup.md
-│   ├── retro.md
-│   ├── review.md
-│   └── blocker.md
-├── agents/                  # AI agents
+│   └── plugin.json
+├── commands/
+│   ├── requirements.md   # 需求管理
+│   ├── backlog.md        # 产品待办
+│   ├── sprint.md         # 迭代管理
+│   ├── board.md          # 看板(个人任务)
+│   ├── standup.md       # 站会
+│   ├── blocker.md        # 阻塞
+│   ├── retro.md          # 回顾
+│   └── review.md         # 评审
+├── agents/
 │   ├── product-owner.md
 │   ├── scrum-master.md
-│   ├── architect.md
-│   ├── frontend-engineer.md
-│   ├── backend-engineer.md
-│   ├── devops-engineer.md
-│   ├── uiux-designer.md
-│   └── qa-engineer.md
-├── skills/                  # Reference skills
-│   ├── scrum-guide.md
-│   └── agile-best-practices.md
-└── README.md
+│   └── ... (6 more)
+└── skills/
+    ├── scrum-guide.md
+    └── agile-best-practices.md
 ```
 
-## 📁 Data Storage
+## 📖 2025 Scrum Guide
 
-Agile data is stored in `.claude/agile/` within your project:
+- **SM控制迭代**：SM负责整个迭代的生命周期
+- **PO对产品负责**：接收需求，管理待办列表
+- **团队自组织**：每个成员有自己的任务清单
+- **看板追踪**：任务可中断，可继续
+- **阻塞管理**：及时发现和解决障碍
 
-```
-.claude/agile/
-├── sprints.json           # Sprint records
-├── backlog.json          # Product backlog items
-├── standups.json         # Daily standup entries
-├── retros.json           # Retrospective feedback
-├── retro-actions.json     # Action items from retros
-├── reviews.json          # Sprint reviews
-├── demos.json            # Demo records
-├── review-feedback.json  # Feedback from reviews
-└── blockers.json         # Blockers and impediments
+## 🔧 Installation
+
+```bash
+git clone https://github.com/MofiU/agile-team-workflow ~/.claude/plugins/agile-team-workflow
 ```
 
-## 📖 Documentation
-
-### 2025 Scrum Guide Compliance
-
-This plugin follows the 2025 Scrum Guide principles:
-- Five events: Sprint, Sprint Planning, Daily Scrum, Sprint Review, Sprint Retrospective
-- Three accountabilities: Product Owner, Scrum Master, Developers
-- Empiricism: Transparency, Inspection, Adaptation
-- AI recognized as an actor in Scrum (Expansion Pack 2025)
-
-### Role Hierarchy
-
-Per the 2025 Scrum Guide:
-1. **Product Owner** is the highest authority for product decisions
-2. **Scrum Master** serves both PO and team (servant leadership)
-3. **No Project Manager** - Development Team is self-organizing
-
-## 🔧 Configuration
-
-Create a `.claude/agile-local.md` file in your project for custom settings:
-
-```markdown
----
-team-size: 5
-sprint-duration: 2
-working-days: 5
-default-priority: P3
----
-```
-
-## 🤝 Contributing
-
-Contributions welcome! Please:
-1. Fork the repository
-2. Create a feature branch
-3. Submit a pull request
-
-## 📄 License
+## License
 
 MIT
-
-## 🙏 Acknowledgments
-
-- Scrum Guide 2025 - https://scrumguides.org
-- Claude Code Plugin System - Anthropic

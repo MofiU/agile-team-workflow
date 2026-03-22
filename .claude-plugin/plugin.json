@@ -1,13 +1,15 @@
 {
   "name": "agile-team-workflow",
-  "description": "Complete agile team workflow management with Scrum framework support - Sprint planning, backlog management, standups, retrospectives, reviews, and blocker tracking following the 2025 Scrum Guide",
+  "description": "Complete agile team workflow management with Scrum framework - Sprint control (SM), Requirements (PO), Kanban board, blocker tracking following 2025 Scrum Guide",
   "version": "1.0.0",
   "author": {
     "name": "MofiU"
   },
   "commands": [
-    "./commands/sprint.md",
+    "./commands/requirements.md",
     "./commands/backlog.md",
+    "./commands/sprint.md",
+    "./commands/board.md",
     "./commands/standup.md",
     "./commands/retro.md",
     "./commands/review.md",

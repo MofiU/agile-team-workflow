@@ -1,91 +1,83 @@
 ---
 name: sprint
-description: Sprint management - create, start, end, list sprints and generate reports
+description: Sprint planning and management - PO creates sprints with goals, reviews progress
 ---
 
-# Sprint Management Command
+# Sprint Planning Command (Product Owner)
 
-Use this command to manage sprints following the 2025 Scrum Guide.
+As the Product Owner, you create and manage Sprints to deliver value. The Sprint Goal is your commitment to stakeholders.
 
-## Sprint Workflow
+## Sprint Planning Workflow
 
-### Create a Sprint
+### Plan a New Sprint
 ```
-/sprint create [options]
+/sprint plan [options]
 ```
 
 Options:
-- `--name` or `-n`: Sprint name (e.g., "Sprint 23", "2025-Q1-Sprint-3")
-- `--goal` or `-g`: Sprint goal statement
+- `--goal` or `-g`: Sprint goal statement (required)
 - `--duration` or `-d`: Duration in weeks (default: 2)
-- `--start-date`: Start date YYYY-MM-DD (default: today)
+- `--start-date`: Start date YYYY-MM-DD (default: next business day)
+- `--capacity`: Expected team capacity (story points)
 
 **Example:**
 ```
-/sprint create --name "Sprint 1" --goal "Complete user authentication" --duration 2
+/sprint plan --goal "Launch user authentication for Q1 launch" --duration 2 --capacity 34
 ```
 
-### Start a Sprint
+### Review Sprint Status
 ```
-/sprint start [sprint-id]
-```
-
-Activates a sprint and sets it as the current active sprint.
-
-### End a Sprint
-```
-/sprint end [sprint-id]
+/sprint status [sprint-id]
 ```
 
-Completes a sprint and generates a sprint report with velocity metrics.
+Shows:
+- Progress toward Sprint Goal
+- Completed vs committed items
+- Blockers affecting delivery
+- Team health indicators
 
-### List Sprints
-```
-/sprint list [options]
-```
-
-Options:
-- `--status`: Filter by status (planned|active|completed|cancelled)
-- `--all`: Show all sprints (default: show recent 10)
-
-### Update Sprint
-```
-/sprint update [sprint-id] [options]
-```
-
-Options:
-- `--goal`: Update sprint goal
-- `--status`: Update status (planned|active|completed|cancelled)
-- `--achieved`: Mark goal as achieved (true|false)
-
-### Sprint Report
+### Review Sprint Report
 ```
 /sprint report [sprint-id]
 ```
 
-Generates a detailed sprint report including:
-- Sprint goal status
-- Story points committed vs completed
+Generated after Sprint ends:
+- Sprint Goal achievement
 - Velocity metrics
-- Burndown data
-- Team performance
+- Items completed vs planned
+- Lessons for next Sprint
 
-## 2025 Scrum Guide Reference
+### Cancel Sprint (if goal is obsolete)
+```
+/sprint cancel [sprint-id] --reason "Business priorities changed"
+```
 
-- Sprint is a fixed-length event (1-4 weeks) that contains all other Scrum events
-- Each Sprint has a goal that provides a shared objective
-- Sprint Planning initiates the Sprint by laying out the work to be performed
-- Daily Scrum inspects progress toward the Sprint Goal and adapts the Sprint Backlog
-- Sprint Review inspects the outcome of the Sprint and determines future adaptations
-- Sprint Retrospective inspects individuals, interactions, tools, and Definition of Done
+Only cancel if Sprint Goal is no longer valuable.
+
+## Your Responsibilities as PO
+
+### Sprint Planning
+- Present the Sprint Goal clearly
+- Communicate product priorities
+- Make scope decisions
+- Commit to delivering value
+
+### During Sprint
+- Remain available for clarification
+- Resist scope changes unless critical
+- Monitor progress toward goal
+- Make acceptance decisions
+
+### Sprint Review
+- Demonstrate completed value
+- Gather stakeholder feedback
+- Adapt Product Backlog based on feedback
+- Plan next Sprint
+
+## 2025 Scrum Guide
+
+The Sprint Goal provides a shared objective. Even if the Product Backlog items change, the Sprint Goal remains the focus.
 
 ## Data Storage
 
-Sprint data is stored in `.claude/agile/sprints.json` and `.claude/agile/backlog.json` within the project directory.
-
-## Sprint Naming Convention
-
-Recommended naming:
-- Sequential: `Sprint 1`, `Sprint 2`, `Sprint 3`
-- Date-based: `2025-Q1-Sprint-1`, `2025-Q2-Sprint-1`
-- Theme-based: `Sprint-Auth-Feature`, `Sprint-Payment-Integration`
+Sprint data stored in `.claude/agile/sprints.json` - you own this as PO.

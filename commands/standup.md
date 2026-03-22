@@ -1,99 +1,91 @@
 ---
 name: standup
-description: Daily standup meeting - record updates, blockers, and generate summaries
+description: Daily standup - SM facilitates, team reports, track blockers
 ---
 
 # Daily Standup Command
 
-Use this command to run daily standup meetings following Scrum practices.
+The Daily Scrum is where the team synchronizes. SM facilitates, team reports progress.
 
 ## Standup Workflow
 
 ### Start Standup
 ```
-/standup start [options]
+/standup start [sprint-id]
 ```
 
-Options:
-- `--format`: Meeting format
-  - `three-questions`: Yesterday, Today, Blockers (default)
-  - `update`: Progress-focused updates
-  - `async`: Asynchronous updates collection
+Starts today's standup session.
 
-Starts a standup meeting for the active sprint.
-
-### Submit Update
+### Submit My Update
 ```
 /standup update [options]
 ```
 
 Options:
-- `--member`: Team member name (required for async)
-- `--yesterday` or `-y`: What was accomplished
-- `--today` or `-t`: What will be worked on
-- `--blockers` or `-b`: Any impediments (comma-separated)
+- `--yesterday` or `-y`: What I accomplished
+- `--today` or `-t`: What I will work on
+- `--blockers` or `-b`: Any blockers
 
 **Example:**
 ```
-/standup update --member "John" --yesterday "Completed login form" --today "Work on API integration" --blockers "Need API credentials"
+/standup update --yesterday "Completed login form" --today "API integration" --blockers "Need credentials"
 ```
 
-### Submit Blockers Only
+### View Updates
+```
+/standup updates [date]
+```
+
+Shows all team updates for the day.
+
+### Summary (for SM)
+```
+/standup summary [options]
+```
+
+Options:
+- `--date`: Date (default: today)
+- `--format`: brief|detailed
+
+Shows:
+- Team progress toward Sprint Goal
+- Blockers raised
+- Action items
+
+### Track Blockers
 ```
 /standup blockers [options]
 ```
 
-Quick way to report blockers without full update.
-
 Options:
-- `--member`: Team member name
-- `--blockers`: Blockers (comma-separated)
+- `--sprint`: Filter by Sprint
+- `--status`: active|resolved|all
+- `--impact`: critical|high|medium|low
 
-### Standup Summary
-```
-/standup summary
-```
+## Your Role
 
-Generates a summary of today's standup including:
-- Participants
-- Key updates
-- Blockers raised
-- Action items
+### As SM
+- Facilitate (15 min max)
+- Note blockers for follow-up
+- Shield team from interruptions
+- Remove impediments
 
-### List Standups
-```
-/standup list [options]
-```
+### As Developer
+- Answer three questions
+- Focus on Sprint Goal
+- Raise blockers immediately
+- Coordinate with teammates
 
-Options:
-- `--sprint`: Filter by sprint ID
-- `--member`: Filter by team member
-- `--date`: Filter by date (YYYY-MM-DD)
-- `--recent`: Show recent N standups (default: 10)
+## 2025 Scrum Guide
 
-## Standup Best Practices
+The Daily Scrum is an internal meeting for the Development Team to synchronize work and plan the next 24 hours.
 
-### Three Questions Format
-1. **What did you accomplish yesterday?**
-2. **What will you work on today?**
-3. **Any blockers?**
+## Three Questions
 
-### Guidelines (2025 Scrum Guide)
-- Time-box to 15 minutes
-- Focus on progress toward Sprint Goal
-- Adapt the Sprint Backlog as needed
-- Raise impediments immediately
-- Scrum Master facilitates and removes blockers
-
-## Blockers Priority
-
-| Impact | Response Time |
-|--------|--------------|
-| Critical | Immediate escalation |
-| High | Same day resolution |
-| Medium | Within 2 days |
-| Low | Next sprint planning |
+1. What did I accomplish yesterday?
+2. What will I work on today?
+3. What blockers do I have?
 
 ## Data Storage
 
-Standup data is stored in `.claude/agile/standups.json` within the project directory.
+Standup data stored in `.claude/agile/standups.json`.
