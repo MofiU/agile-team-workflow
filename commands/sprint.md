@@ -1,40 +1,69 @@
 ---
 name: sprint
-description: Sprint management - SM controls sprint lifecycle, team commits to sprint goal
+description: Sprint management - team commits, configurable turns, quorum-based attendance
 ---
 
 # Sprint Command
 
 **⚠️ CRITICAL: Team commits. PO provides priorities. SM facilitates.**
 
-**Sprint capacity = 40 conversation turns** (session limit 50, 10 reserved for Review/Retro)
+**Sprint capacity = configurable conversation turns** (default: 35, adjustable 25-40)
 
 ---
 
 ## Sprint Lifecycle
 
-### Turn Budget (40 Turns Total)
+### Turn Budget (Default: 35 Turns)
 
 | Ceremony | Turns | Notes |
 |----------|-------|-------|
-| Sprint Planning | 2 | Goal + commitment |
+| Sprint Planning | 3 | Goal + commitment |
 | Daily Scrums (10 days) | 10 | 1 turn per day |
 | Backlog Refinement | 2 | As needed |
-| Development | 24 | Main work |
+| Development | 18 | Main work |
 | Sprint Review | 1 | Team demo |
 | Sprint Retrospective | 1 | Team reflection |
-| **TOTAL** | **40** | |
+| **TOTAL** | **35** | configurable |
 
-**Team decides what they can commit in 40 turns.**
+**Team decides what they can commit in configured turns.**
 
-### 1. Sprint Planning (Team Commits)
+### Configurable Turns
+
+```
+/sprint config --turns 30   # Struggling team
+/sprint config --turns 40   # High-performing team
+```
+
+**Recommendation**: Start at 35, adjust after 2 sprints.
+
+### Turn Borrowing (Emergency)
+
+```
+/sprint borrow --turns 5   # Emergency, team consensus required
+```
+
+### 1. Sprint Planning (Quorum Required)
 
 ```
 SM facilitates → PO presents priorities → Team commits to capacity
 ```
 
-**Required participants**: SM, PO, All Developers
-**Timebox**: Up to 8 hours for 2-week sprint
+**Quorum**: 2/3 of team + ALL Developers + PO + SM
+**All developers MUST attend** (no proxy, no exception)
+
+```
+/sprint planning [options]
+```
+
+Options:
+- `--goal`: Sprint goal statement (required)
+- `--sprint-id`: Sprint identifier (auto-generated if not provided)
+- `--duration`: Duration in weeks (default: 2)
+
+**Example:**
+```
+/sprint planning --goal "Complete user authentication module" --duration 2
+```
 
 ```
 /sprint planning [options]
@@ -52,7 +81,7 @@ Options:
 
 ### 2. Daily Scrum (Team Syncs)
 
-**Required participants**: Developers working that day
+**Participants**: Developers working that day (no quorum needed)
 **Optional**: SM
 **Timebox**: 15 minutes max
 
@@ -74,7 +103,7 @@ Options:
 
 **⚠️ NOT a handoff. Team demonstrates. PO inspects.**
 
-**Required participants**: Full Scrum Team + Stakeholders
+**Quorum**: 2/3 of team + stakeholders
 **Timebox**: Up to 4 hours for 2-week sprint
 
 ```
@@ -90,7 +119,7 @@ Shows:
 
 ### 4. Sprint Retrospective (Team Reflects)
 
-**Required participants**: Full Scrum Team (including PO)
+**Quorum**: 2/3 of team (including PO)
 **Timebox**: Up to 3 hours for 2-week sprint
 
 ```

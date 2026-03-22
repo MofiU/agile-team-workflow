@@ -1,46 +1,59 @@
 ---
 name: dynamic-team
-description: Dynamic team composition - Sprint capacity based on conversation turns
+description: Dynamic team composition - configurable turns and quorum-based attendance
 ---
 
 # Dynamic Team Composition
 
-**⚠️ CRITICAL: Some ceremonies are non-negotiable - the entire Scrum Team must participate.**
+**⚠️ Some ceremonies require quorum - not necessarily everyone physically present.**
 
 ---
 
-## Sprint Capacity: 40 Conversation Turns
+## Sprint Capacity: Configurable Conversation Turns
 
 **Sprint capacity is measured in conversation turns, not story points.**
 
-| Metric | Value | Reason |
-|--------|-------|--------|
-| **Max turns per Sprint** | 40 | Session limit is 50, 10 reserved for Sprint Review/Retro |
-| **Planning estimate** | ~4-6 turns | Sprint Planning + Daily Scrums |
-| **Execution budget** | ~30-34 turns | Actual development work |
-| **Buffer** | ~2-4 turns | Unexpected issues, refinements |
+| Metric | Default | Adjustable | Reason |
+|--------|---------|------------|--------|
+| **Max turns per Sprint** | 35 | Yes (25-40) | Session limit is 50, more buffer for emergencies |
+| **Planning** | ~3-4 turns | Yes | Sprint Planning |
+| **Daily Scrums (10)** | 10 turns | Yes | 1 turn per day |
+| **Refinement** | 2 turns | Yes | As needed |
+| **Execution** | ~18-22 turns | Yes | Main work |
+| **Review + Retro** | 2 turns | Fixed | Essential |
 
-### Turn Budget Breakdown
+### Turn Budget (Default: 35 Turns)
 
 ```
-Sprint Planning:     2 turns (goal setting, commitment)
-Daily Scrums:        10 turns (10 days × 1 turn)
+Sprint Planning:     3 turns
+Daily Scrums:       10 turns (10 days × 1 turn)
 Backlog Refinement:  2 turns
-Execution:           24 turns (development tasks)
+Execution:          18 turns (development tasks)
 Sprint Review:       1 turn  (demo)
 Sprint Retro:        1 turn  (reflection)
 
-TOTAL:               40 turns
+TOTAL:              35 turns (configurable)
 ```
+
+### Configurable Turns
+
+**Teams can adjust turn budget based on experience.**
+
+```
+/team config --sprint-turns 30   # Struggling team, more buffer
+/team config --sprint-turns 40   # High-performing team
+```
+
+**Recommendation**: Start at 35, adjust after 2 sprints based on completion rates.
 
 ### Team Decides Capacity
 
-**Team self-organizes and decides what they can deliver in 40 turns.**
+**Team self-organizes and decides what they can deliver in configured turns.**
 
 ```
 PO: "Priority is A, B, C, D, E"
 
-SM: "Team, we have 40 turns. What can we commit?"
+SM: "Team, we have 35 turns. What can we commit?"
 
 Team: "A needs 15 turns, B needs 12, C needs 8. That's 35."
 
@@ -53,19 +66,80 @@ PO: "Ok, C takes priority. Let's break C into smaller pieces."
 SM: "Committed: A, B, C. Sprint Goal locked."
 ```
 
+### Turn Borrowing (Emergency)
+
+**In genuine emergencies, team can borrow from next sprint.**
+
+```
+SM: "Critical bug found. Need 5 extra turns."
+
+Team: "Consensus to borrow 5 from next sprint?"
+
+Team: *consensus* "Yes."
+
+SM: "Borrowing 5 turns. Notify PO. Log it."
+```
+
+---
+
+## Quorum-Based Attendance
+
+**Not everyone must be physically present. Quorum ensures decisions are valid.**
+
+| Ceremony | Quorum Required |
+|----------|-----------------|
+| Sprint Planning | **2/3 of team + ALL developers + PO + SM** |
+| Daily Scrum | Developers working that day (no quorum) |
+| Sprint Review | **2/3 of team + stakeholders** |
+| Retrospective | **2/3 of team (including PO)** |
+
+### Quorum Rules
+
+```
+✅ Quorum met: Ceremony can proceed, decisions valid
+❌ Quorum NOT met: Delay or async alternative required
+⚠️ All developers must be present for Planning (no exceptions)
+```
+
+### Quorum Examples
+
+```
+Planning with 3 devs:
+- All 3 devs + PO + SM = 5 people = Quorum ✅
+- 2 devs + PO + SM = 4 people = Quorum ✅  
+- 1 dev + PO + SM = 3 people = NOT Quorum ❌
+
+Planning with 5 devs:
+- 4 devs + PO + SM = 6 people = Quorum ✅
+- 3 devs + PO + SM = 5 people = Quorum ✅
+- 2 devs + PO + SM = 4 people = NOT Quorum ❌
+```
+
+### Async Alternatives (When Quorum Not Possible)
+
+```
+/retro async --format start-stop-continue  # Async retro
+/planning delay 1 day                      # Wait for availability
+/planning proxy @dev1 represents @dev2     # Designated representative
+```
+
+---
+
+## Core Ceremonies Required
+
 ---
 
 ## Core Ceremonies Required
 
 Not all members need to be in every meeting, BUT:
-- Sprint Planning: **Full team required**
-- Daily Scrum: **Only people working that day**
-- Sprint Review: **Full team + stakeholders**
-- Sprint Retrospective: **Full team required** (SM facilitates)
+- Sprint Planning: **Quorum required** (all developers must attend)
+- Daily Scrum: **Developers working that day** (no quorum needed)
+- Sprint Review: **Quorum + stakeholders**
+- Sprint Retrospective: **Quorum required** (including PO)
 
 ---
 
-## Phase-Based Participation (Corrected)
+## Phase-Based Participation
 
 ### Discovery Phase
 **When**: Requirements gathering, design work
@@ -141,32 +215,37 @@ Not all members need to be in every meeting, BUT:
 
 ---
 
-## Ceremony Matrix (Corrected)
+## Ceremony Matrix
 
-| Ceremony | Required | Optional | Excluded | Notes |
-|----------|----------|----------|----------|-------|
-| Sprint Planning | **SM, PO, All Devs** | Architect | QA, UI/UX | All Devs must commit |
-| Daily Standup | Devs working today | SM | Not working today | 15 min max |
-| Backlog Refinement | SM, PO | Devs (relevant) | - | |
-| Sprint Review | **Full Team + Stakeholders** | - | - | Developers demo |
-| Retrospective | **Full Team (incl PO)** | - | - | SM facilitates |
-| Blocker Sync | SM + Affected | - | Unaffected | |
+| Ceremony | Quorum | Must Attend | Optional | Notes |
+|----------|--------|-------------|----------|-------|
+| Sprint Planning | **2/3 + All Devs** | SM, PO, All Devs | Architect | All Devs required |
+| Daily Standup | None | Devs working | SM | 15 min max |
+| Backlog Refinement | None | SM, PO | Devs | |
+| Sprint Review | **2/3 + Stakeholders** | SM, PO, Devs | Stakeholders | Developers demo |
+| Retrospective | **2/3 (incl PO)** | SM, Team | - | SM facilitates |
+| Blocker Sync | None | SM + Affected | Unaffected | |
 
 ---
 
-## SM Orchestration (Corrected)
+## SM Orchestration
 
 As SM, you decide:
 
 1. **When to hold additional meetings** (syncs, ad-hoc)
 2. **Who to pull in** for specific expertise
 3. **How to timebox** ceremonies
-4. **When to excuse** people from non-core ceremonies
+4. **How to achieve quorum** when team is partially unavailable
 
-**You CANNOT excuse people from**:
-- Sprint Planning (all devs needed for commitment)
-- Sprint Review (all devs needed for demo)
-- Retrospective (all team needed for trust)
+**Quorum management**:
+- If dev is unavailable → delay planning or get async input
+- If PO is unavailable → can proceed with PO proxy
+- If SM is unavailable → designate facilitator
+
+**You CANNOT skip ceremonies, but you CAN**:
+- Delay by 1 day if quorum not met
+- Use async alternatives
+- Get designated proxies
 
 ---
 
@@ -208,14 +287,17 @@ SM: No need for full team unless major
 
 - "I only work on my stuff"
 - "I skip ceremonies I don't like"
-- "SM decides who shows up to core ceremonies"
+- "SM decides who shows up" (quorum is the rule, not SM's choice)
+- "Full attendance or nothing" (quorum allows flexibility)
 
 ---
 
-## Benefits of Correct Dynamic Team
+## Benefits of Dynamic Team with Quorum
 
 1. **Commitment**: Team commits because they participated in planning
 2. **Transparency**: Everyone sees what everyone else is doing
 3. **Trust**: Retrospective builds team trust
 4. **Accountability**: Developers demo their own work
 5. **Self-organization**: Team decides how to divide work
+6. **Practicality**: Real life happens - quorum allows flexibility
+7. **Validity**: Decisions are valid when quorum is met

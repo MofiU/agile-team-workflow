@@ -1,13 +1,13 @@
 ---
 name: retro
-description: Sprint retrospective - SM facilitates, FULL TEAM participates, improvements planned
+description: Sprint retrospective - SM facilitates, quorum required, improvements planned
 ---
 
 # Sprint Retrospective Command
 
-**⚠️ CRITICAL: Full Scrum Team must participate. This includes PO.**
+**⚠️ Quorum required (2/3 of team including PO).**
 
-Retrospective is where trust is built. If PO or any developer skips it, the team is signaling that their input doesn't matter.
+Retrospective is where trust is built. If quorum isn't met, delay or use async alternative.
 
 ---
 
@@ -18,7 +18,7 @@ Retrospective is where trust is built. If PO or any developer skips it, the team
 /retro start [options]
 ```
 
-**Required participants**: Full Scrum Team (SM, PO, All Developers)
+**Quorum**: 2/3 of team (including PO must be present)
 
 Options:
 - `--format`: Retro format (required)
@@ -31,6 +31,16 @@ Options:
 **Example:**
 ```
 /retro start --format start-stop-continue
+```
+
+### Async Alternative (When Quorum Not Possible)
+```
+/retro async --format start-stop-continue
+```
+
+### Delay Option
+```
+/retro delay 1 day   # Wait for quorum
 ```
 
 ### 2. Collect Feedback

@@ -34,42 +34,66 @@ This README reflects **correct Scrum 2025**, not your original design. Key corre
 3. **Self-Organization**: Team decides how to work
 4. **Customer Collaboration**: Not contract negotiation
 
-### Sprint Capacity: 40 Conversation Turns
+### Sprint Capacity: Configurable Conversation Turns
 
 **Sprint capacity is measured in conversation turns, not story points.**
 
-| Metric | Value | Reason |
-|--------|-------|--------|
-| **Max turns per Sprint** | 40 | Session limit is 50, 10 reserved for Sprint Review/Retro |
-| **Planning** | ~4-6 turns | Sprint Planning + Daily Scrum setup |
-| **Execution** | ~30-34 turns | Actual development |
-| **Buffer** | ~2-4 turns | Unexpected issues |
+| Metric | Default | Adjustable | Reason |
+|--------|---------|------------|--------|
+| **Max turns per Sprint** | 35 | 25-40 | More buffer for emergencies |
+| **Planning** | ~3-4 turns | Yes | Sprint Planning |
+| **Execution** | ~18-22 turns | Yes | Actual development |
+| **Review + Retro** | 2 turns | Fixed | Essential |
 
-### Turn Budget Example
+### Turn Budget Example (Default: 35 Turns)
 
 ```
-Sprint Planning:     2 turns
+Sprint Planning:     3 turns
 Daily Scrums (10):  10 turns
 Backlog Refinement:  2 turns
-Development:         24 turns
+Development:         18 turns
 Sprint Review:       1 turn
 Sprint Retro:        1 turn
 
-TOTAL:              40 turns
+TOTAL:              35 turns (configurable)
 ```
 
-**Team decides what they can commit in 40 turns. PO does NOT override.**
+**Team decides what they can commit. PO does NOT override.**
+
+**Configurable**: `/team config --sprint-turns 30` (adjustable per team)
+
+### Emergency Reprioritization
+
+**PO can declare emergency and reprioritize. Team decides if they can absorb.**
+
+```
+PO: "Emergency: Critical bug affecting 50% of users."
+SM: "Team, can we absorb 5 turns for hotfix?"
+Team: "Yes" → Remove lower priority item, add hotfix
+Team: "No" → PO decides if Sprint cancellation is warranted
+```
+
+### Quorum-Based Attendance
+
+**Not everyone must be physically present. Quorum ensures valid decisions.**
+
+| Ceremony | Quorum | Must Attend |
+|----------|--------|-------------|
+| Sprint Planning | 2/3 + All Devs | All Developers (no exception) |
+| Daily Standup | None | Working developers |
+| Sprint Review | 2/3 + stakeholders | - |
+| Retrospective | 2/3 (incl PO) | PO must attend |
 
 ### Correct Sprint Flow
 
 ```
-Sprint Planning (Full Team Required)
+Sprint Planning (Quorum + All Developers)
      ↓
 Daily Scrums (Working Developers)
      ↓
-Sprint Review (Team Demonstrates → PO Inspects)
+Sprint Review (Quorum + Stakeholders)
      ↓
-Sprint Retrospective (Full Team Required)
+Sprint Retrospective (Quorum Including PO)
      ↓
 Next Sprint Planning (Fresh Start)
 ```
@@ -95,13 +119,17 @@ Next Sprint Planning (Fresh Start)
 ```bash
 /team view
 /team phase development
+/team config --sprint-turns 35   # Configurable
 /team ceremony planning --sprint sprint-123
+/retro async --format start-stop-continue   # When quorum not possible
 ```
 
 ### 4. Sprint Management
 ```bash
 /sprint planning --goal "Complete auth module" --duration 2
 /sprint daily --yesterday "Done" --today "Doing" --blockers "None"
+/sprint config --turns 30   # Adjustable
+/sprint borrow --turns 5    # Emergency, team consensus
 /sprint cancel sprint-123 --reason "Goal obsolete"
 ```
 
@@ -174,22 +202,24 @@ Next Sprint Planning (Fresh Start)
 
 ## 🔑 Critical Ceremonies
 
-### Sprint Planning (Required: SM + PO + All Developers)
+### Sprint Planning (Quorum: 2/3 + All Developers)
 - PO presents priorities
 - Team commits to Sprint Goal
+- **All developers must attend** (no proxy, no exception)
 - **Team decides capacity, not PO or SM**
 
-### Sprint Review (Required: Full Team + Stakeholders)
+### Sprint Review (Quorum: 2/3 + Stakeholders)
 - **Developers demo their own work**
 - PO inspects items against acceptance criteria
 - Stakeholders provide feedback
 - **NOT a handoff or approval meeting**
 
-### Sprint Retrospective (Required: Full Team Including PO)
+### Sprint Retrospective (Quorum: 2/3 Including PO)
 - Team reflects on how to improve
 - SM facilitates
 - Action items with owners
 - **PO participates as team member**
+- **Async alternative**: `/retro async` when quorum not possible
 
 ---
 
@@ -198,7 +228,7 @@ Next Sprint Planning (Fresh Start)
 - Not a command-and-control structure
 - Not SM managing developers
 - Not PO approving sprints
-- Not optional ceremonies
+- Not rigid ceremonies (quorum allows flexibility)
 - Not waterfall with daily standups
 
 ---
