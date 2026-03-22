@@ -1,5 +1,5 @@
 ---
-name: agile-best-practices
+name: agile-team:agile-best-practices
 description: Agile engineering best practices - estimation, retrospectives, continuous improvement
 ---
 

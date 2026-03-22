@@ -1,5 +1,5 @@
 ---
-name: scrum-guide
+name: agile-team:scrum-guide
 description: 2025 Scrum Guide reference - fundamental Scrum principles and practices
 ---
 

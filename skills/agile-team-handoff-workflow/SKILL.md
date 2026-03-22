@@ -1,5 +1,5 @@
 ---
-name: handoff-workflow
+name: agile-team:handoff-workflow
 description: Sprint Review and handoff workflow - collaboration, not approval
 ---
 

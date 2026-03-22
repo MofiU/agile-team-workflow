@@ -1,5 +1,5 @@
 ---
-name: dynamic-team
+name: agile-team:dynamic-team
 description: Dynamic team composition - configurable turns and quorum-based attendance
 ---
 

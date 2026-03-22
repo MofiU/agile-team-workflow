@@ -16,9 +16,9 @@
     "./agents/qa-engineer.md"
   ],
   "skills": [
-    "./skills/scrum-guide/SKILL.md",
-    "./skills/agile-best-practices/SKILL.md",
-    "./skills/dynamic-team/SKILL.md",
-    "./skills/handoff-workflow/SKILL.md"
+    "./skills/agile-team-scrum-guide/SKILL.md",
+    "./skills/agile-team-agile-best-practices/SKILL.md",
+    "./skills/agile-team-dynamic-team/SKILL.md",
+    "./skills/agile-team-handoff-workflow/SKILL.md"
   ]
 }
