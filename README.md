@@ -100,92 +100,7 @@ Next Sprint Planning (Fresh Start)
 
 ---
 
-## 📋 Commands (11 total)
-
-### 1. Requirements
-```bash
-/requirements submit --title "登录功能" --from "用户A" --priority P1
-/requirements approve REQ-123
-```
-
-### 2. Backlog Management
-```bash
-/backlog add --title "Google登录" --from-req REQ-123 --priority P1
-/backlog view --top 20
-/backlog prioritize AUTH-1 AUTH-2
-```
-
-### 3. Team
-```bash
-/team view
-/team phase development
-/team config --sprint-turns 35   # Configurable
-/team ceremony planning --sprint sprint-123
-/retro async --format start-stop-continue   # When quorum not possible
-```
-
-### 4. Sprint Management
-```bash
-/sprint planning --goal "Complete auth module" --duration 2
-/sprint daily --yesterday "Done" --today "Doing" --blockers "None"
-/sprint config --turns 30   # Adjustable
-/sprint borrow --turns 5    # Emergency, team consensus
-/sprint cancel sprint-123 --reason "Goal obsolete"
-```
-
-### 5. Kanban Board
-```bash
-/board view --sprint sprint-123
-/board task --title "实现登录" --assignee "Alice"
-/board move TASK-123 in-progress
-/board mine --status todo
-```
-
-### 6. Daily Standup
-```bash
-/standup start sprint-123
-/standup update --yesterday "完成表单" --today "API对接"
-/standup summary
-```
-
-### 7. Blocker Tracking
-```bash
-/blocker track --description "API超时" --impact high
-/blocker resolve BLOCKER-123
-```
-
-### 8. Sprint Retrospective
-```bash
-/retro start --format start-stop-continue
-/retro feedback --type continue --content "站会很有用"
-/retro actions
-```
-
-### 9. Sprint Review
-```bash
-/review schedule --sprint sprint-123
-/review demo --title "认证模块" --presenter @alice
-/review inspect --item AUTH-3 --decision accept
-/review feedback --type suggestion --content "Consider mobile"
-```
-
-### 10. External Handoff
-```bash
-/handoff initiate --sprint sprint-123 --to DevOps --type deployment
-/handoff confirm HANDOFF-456 --status accepted --timeline "Friday"
-```
-
-### 11. Progress
-```bash
-/progress sprint sprint-123
-/progress team sprint-123
-/progress po
-/progress sm
-```
-
----
-
-## 🤖 AI Agent Team
+## 🤖 AI Agent Team (只用 Agent)
 
 | Agent | Role | Accountable For |
 |-------|------|-----------------|
@@ -219,7 +134,7 @@ Next Sprint Planning (Fresh Start)
 - SM facilitates
 - Action items with owners
 - **PO participates as team member**
-- **Async alternative**: `/retro async` when quorum not possible
+- **Async alternative**: `@agile-team:scrum-master` 发起异步回顾
 
 ---
 
@@ -268,7 +183,6 @@ Next Sprint Planning (Fresh Start)
 agile-team-workflow/
 ├── .claude-plugin/
 │   └── plugin.json
-├── commands/           # 11个命令
 ├── agents/             # 8个AI角色
 └── skills/            # 4个技能
     ├── scrum-guide/SKILL.md

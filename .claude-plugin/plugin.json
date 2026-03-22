@@ -5,19 +5,6 @@
   "author": {
     "name": "MofiU"
   },
-  "commands": [
-    "./commands/requirements.md",
-    "./commands/backlog.md",
-    "./commands/team.md",
-    "./commands/sprint.md",
-    "./commands/board.md",
-    "./commands/standup.md",
-    "./commands/retro.md",
-    "./commands/review.md",
-    "./commands/blocker.md",
-    "./commands/handoff.md",
-    "./commands/progress.md"
-  ],
   "agents": [
     "./agents/product-owner.md",
     "./agents/scrum-master.md",
